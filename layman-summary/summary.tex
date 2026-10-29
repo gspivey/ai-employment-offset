@@ -1,0 +1,132 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,allcolors=blue!60!black]{hyperref}
+\usepackage{parskip}
+
+\title{Can AI Startups Replace the Jobs Big Tech Cuts?\\[0.3em]\large I Ran 2,000 Simulations to Find Out}
+\author{Gerard Spivey\\\href{mailto:gs@gspivey.com}{gs@gspivey.com}}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+
+\textit{The short version of my working paper, ``Fewer Giants, More Firms?''}
+
+\hrule
+\vspace{1em}
+
+\section*{The Question I Couldn't Shake}
+
+On October 26, Microsoft offered a voluntary exit package to about \textbf{60,000 employees}, roughly a quarter of its workforce, while guiding to around \textbf{\$175 billion} in 2026 capital spending as it builds out AI data centers.
+
+AI already writes most of my implementation code, so the ``AI is coming for jobs'' headlines aren't abstract for me. But they all assume a fixed set of companies, each needing fewer people.
+
+That misses half the story. If AI makes big companies more productive, it should also make \textit{new} companies cheaper to start. So I asked: \textbf{when big companies shed jobs because of AI, will new AI-powered companies hire enough people to make up the difference?} Economists call that \textbf{offset}.
+
+\section*{Why Cloud Computing Is the Warning Sign}
+
+The closest precedent is \textbf{cloud computing}. After AWS, you no longer had to buy servers to launch a software company. Starting got dramatically cheaper.
+
+You'd expect a startup boom. Instead, between 2006 and 2020, \textbf{the US startup rate kept falling and employment kept concentrating in big firms.} Cheaper to start didn't mean more jobs.
+
+To find out what \textit{does} decide it, I built a model of an economy where companies are born, grow, and die, then hit it with an AI shock that both cuts jobs at incumbents and lowers the cost of starting a firm. Nobody knows how strong those effects will be, so I ran it \textbf{2,000 times} with different plausible assumptions. That's a \textbf{Monte Carlo simulation}: instead of betting on one forecast, you look at the whole spread of outcomes.
+
+\section*{The 81.7\% Headline (and Why It's Not the Story)}
+
+In \textbf{81.7\%} of those simulated futures, AI raised total employment. Good news? Partly. When I broke down what drove the results, one factor dominated:
+
+\begin{center}
+\begin{tabular}{p{7cm}r}
+\toprule
+\textbf{What drives the outcome} & \textbf{Share of variation} \\
+\midrule
+Whether AI \textbf{helps} workers or \textbf{replaces} them & \textbf{71\%} \\
+How much AI lowers the cost of starting a company & \textbf{3\%} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Cheaper startups, the cloud-era mechanism, barely move the needle. Most of that 81.7\% comes from worlds where AI simply \textbf{isn't replacing many people to begin with}, not from startups riding to the rescue.
+
+\section*{The Tipping Point}
+
+Think of AI as sitting on a dial between \textbf{power tool} and \textbf{replacement}. As a power tool, it makes each worker more productive, adopting companies grow, and growing companies hire. As a replacement, companies make the same product with fewer people.
+
+Somewhere on that dial is a \textbf{tipping point}, which I call the \textbf{displacement threshold}. Which side we land on changes everything:
+
+\begin{center}
+\begin{tabular}{p{8cm}r}
+\toprule
+\textbf{Where AI lands} & \textbf{Chance AI adds jobs} \\
+\midrule
+\textbf{Power-tool side} of the tipping point & \textbf{99.8\%} \\
+\textbf{Replacement side} of the tipping point & \textbf{74.9\%} \\
+Far past it, and AI-native startups aren't much more productive & \textbf{27.8\%} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Past the tipping point, the deciding question becomes: \textbf{are AI-native startups dramatically more productive?} That matters about six times more than how cheap they are to start.
+
+\section*{Where We Are Today}
+
+The early data is cautiously encouraging. The Census Bureau's October 2026 survey found \textbf{only 2\% of businesses using AI cut staff because of it}. That's the power-tool side, for now.
+
+The worrying part: \textbf{new AI companies barely hire.} By press reports, Cursor brings in about \textbf{\$10 million in revenue per employee}. Cloud-era Snowflake and Databricks were at \$0.17--0.32 million. Business applications are at a record, up \textbf{15.3\%} this year, but applications from people planning to \textbf{pay wages} are \textit{down} 15.3\%. That decline predates AI and shows up in every sector, but the direction is clear: \textbf{more firms, not more employers.}
+
+\section*{US vs. Europe}
+
+I also ran a European version of the model:
+
+\begin{center}
+\begin{tabular}{p{6.5cm}rr}
+\toprule
+& \textbf{United States} & \textbf{European Union} \\
+\midrule
+New employer firms (share/year) & 9.1\% & 4.8\% \\
+Private AI investment (2025) & \$285.9B & \$20.9B \\
+Paperwork to start (OECD, 0--6) & 2.03 & 1.11--2.74 \\
+Firing protection (OECD, 0--6) & 0.77 & 1.94--2.88 \\
+AI-specific regulation & None federally & AI Act (Dec 2027) \\
+\textbf{Simulated chance AI adds jobs} & \textbf{81.7\%} & \textbf{69.7\%} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The surprise: \textbf{Europe's problem isn't startup paperwork.} The US actually scores worse than France, Italy, Spain, and Sweden there. Most of the gap is \textbf{thin scale-up money}. Europe has AI startups, but far less capital to grow them into real employers.
+
+\section*{What I'm Watching}
+
+These leading indicators will tell us which side of the tipping point we're on:
+
+\begin{center}
+\begin{tabular}{p{4.5cm}p{4cm}p{3.5cm}}
+\toprule
+\textbf{Signal} & \textbf{Where to find it} & \textbf{Bad sign} \\
+\midrule
+AI-using businesses cutting staff & Census BTOS (US), Eurostat (EU) & Climbs from 2\% \\
+Applications planning to pay wages & Census BFS & Keeps falling \\
+Headcount at AI-native startups & Census/OECD firm data & Revenue grows, headcount flat \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{The first row is the big one.} If that 2\% starts climbing, the 99.8\% world is over.
+
+\section*{My Takeaway}
+
+Honest caveats first: this is a model, not a forecast. It counts jobs, not whether they pay well or whether a laid-off worker can land one, and cloud computing is an imperfect stand-in for AI.
+
+With that said: \textbf{cheaper startups won't save us on their own.} What decides AI's effect on jobs is whether it stays a power tool or becomes a replacement, and right now the data says power tool. I'll check the Census survey each time it updates, and if that 2\% moves, I'll write the follow-up.
+
+\vspace{1em}
+\hrule
+\vspace{0.5em}
+\textit{Want the full paper and the model behind it?} \href{https://www.gspivey.com/contact}{Reach out.}
+
+\end{document}

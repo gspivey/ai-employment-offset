@@ -1,0 +1,70 @@
+\section{Theoretical Framework}\label{sec:theory}
+
+% Role: baseline environment without AI; the shock is added in sec:ai-model.
+We embed a span-of-control technology \citep{lucas1978size} in an entry-and-exit model \citep{hopenhayn1992entry}, a structure chosen because it links entry and operating costs directly to the firm size distribution.
+The model is a workhorse in the business dynamism literature \citep{decker2014role,haltiwanger2013who}, and its extension with random growth yields a Pareto tail that matches the observed right skew of the firm size distribution \citep{luttmer2007selection,axtell2001zipf}.
+
+\subsection{Environment}\label{sec:theory-env}
+
+Time is discrete.
+A continuum of firms produces a homogeneous good using labor, with idiosyncratic productivity $z$ that follows an AR(1) process in logs,
+\begin{equation}\label{eq:productivity-process}
+  \ln z' = \rho \ln z + (1-\rho)\mu + \varepsilon, \qquad \varepsilon \sim \mathcal{N}(0, \sigma_z^2),
+\end{equation}
+with persistence $\rho$ and long-run mean $\mu$.
+A firm with productivity $z$ that employs $n$ workers produces
+\begin{equation}\label{eq:production}
+  y = z\, n^{\alpha}, \qquad 0 < \alpha < 1,
+\end{equation}
+where $\alpha$ is the span-of-control parameter (decreasing returns to labor), and pays the wage $w$ and a fixed operating cost $c_f$ each period.
+
+\subsection{Incumbents}\label{sec:theory-incumbents}
+
+Static profit maximization gives labor demand
+\begin{equation}\label{eq:labor-demand}
+  n(z) = \left( \frac{\alpha z}{w} \right)^{\frac{1}{1-\alpha}},
+\end{equation}
+and the value of an incumbent satisfies
+\begin{equation}\label{eq:value}
+  V(z) = \pi(z) - c_f + \beta \int \max\bigl\{ 0,\, V(z') \bigr\}\, dF(z' \mid z),
+\end{equation}
+where $\pi(z)$ is static profit before the fixed cost and $\beta$ is the discount factor.
+Firms exit when $V(z) < 0$, which defines an exit threshold $z^{*}$.
+
+\subsection{Entry}\label{sec:theory-entry}
+
+A potential entrant pays a sunk entry cost $c_e$ and then draws initial productivity from a distribution $G(z)$.
+With positive entry in equilibrium, free entry requires
+\begin{equation}\label{eq:free-entry}
+  \int V(z)\, dG(z) = c_e .
+\end{equation}
+
+\subsection{Stationary equilibrium and employment accounting}\label{sec:theory-equilibrium}
+
+A stationary equilibrium is a wage $w$, a mass of entrants $M_e$, an exit threshold $z^{*}$, and an invariant distribution of firms $\mu$ such that \cref{eq:labor-demand,eq:value,eq:free-entry} hold and the labor market clears.
+In the baseline we take labor supply to be perfectly elastic at the wage $w$, so that displacement shows up as lower employment rather than lower wages; \cref{sec:disc-limitations} discusses how a finite labor-supply elasticity would change the results.
+
+We partition firms by employment into three size classes: large incumbents $\Lc$ (5,000 employees or more), the band of small and mid-sized firms $\Bc$ (5 to 4,999 employees), and very small firms $\Sc$ (fewer than 5).
+Aggregate employment is then
+\begin{equation}\label{eq:employment}
+  N = N^{\Lc} + N^{\Bc} + N^{\Sc}, \qquad N^{k} = \int_{z:\, n(z) \in k} n(z)\, d\mu(z), \quad k \in \{\Lc, \Bc, \Sc\}.
+\end{equation}
+% [rigor] The 5,000 cutoff matches BDS firm-size classes; European data are typically top-coded at 250+. See sec:cloud-data.
+\Cref{eq:employment} is an accounting identity; the model's content is in how a shock moves firms across the size classes and changes the mass of firms in each one.
+
+\subsection{The displacement threshold}\label{sec:theory-threshold}
+
+The model has a key threshold that governs whether technological change raises or lowers employment.
+We show in \cref{sec:ai-ces} that when AI is modeled as a substitute for labor within a CES production bundle with elasticity of substitution $\sigma_{\text{ai}}$, AI adoption \emph{increases} a firm's headcount if and only if
+\begin{equation}\label{eq:threshold}
+  \sigma_{\text{ai}} < \frac{1}{1-\alpha} \equiv \theta.
+\end{equation}
+With $\alpha = 0.64$ (a standard calibration from \citealp{hopenhayn1993job}), the threshold is $\theta \approx 2.78$.
+Below this threshold, the scale effect dominates: cheaper effective input lets the firm produce more, and the extra output requires more labor.
+Above the threshold, the substitution effect dominates: the firm replaces workers with AI services faster than it grows.
+
+This parameter---the labor-AI substitution elasticity---will prove to be the central uncertain quantity.
+% [claim] Verify that Graetz and Michaels (2018) report elasticities in this range; their headline results are productivity and employment effects, not substitution elasticities.
+Existing estimates of automation elasticities range from 0.3 to 1.7 for robots \citep{graetz2018robots}, though these pertain to physical automation rather than AI.
+More recent surveys suggest AI adoption has not yet triggered employment reductions at adopting firms: the Census Bureau's Business Trends and Outlook Survey (October 2026) reports that only 2\% of AI-adopting establishments reduced employment due to AI, while 4.7\% increased headcount \citep{btos2026oct}.
+We therefore treat $\sigma_{\text{ai}}$ as uncertain and explore its effects through Monte Carlo simulation (\cref{sec:simulation}).
