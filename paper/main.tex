@@ -1,0 +1,84 @@
+\documentclass[11pt]{article}
+
+% ---- Packages ----------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[authoryear,round]{natbib}
+\usepackage[colorlinks=true,allcolors=blue!60!black]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+\graphicspath{{figures/}}
+
+\hypersetup{
+  pdftitle={Fewer Giants, More Firms? Artificial Intelligence, Entry Costs, and the Firm Size Distribution},
+  pdfkeywords={artificial intelligence, cloud computing, firm entry, firm size distribution, business dynamism}
+}
+
+% ---- Theorem-like environments -----------------------------------------------
+\theoremstyle{plain}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{definition}{Definition}
+\newtheorem{prediction}{Prediction}
+\crefname{assumption}{Assumption}{Assumptions}
+\crefname{prediction}{Prediction}{Predictions}
+
+% ---- Macros ------------------------------------------------------------------
+% Visible marker for text the author still has to write; remove before submission.
+\newcommand{\placeholder}[1]{\textcolor{gray}{[\textit{#1}]}}
+% Size classes: L = large incumbents, B = the 5--4,999 band, S = fewer than 5 employees.
+\newcommand{\Lc}{\mathcal{L}}
+\newcommand{\Bc}{\mathcal{B}}
+\newcommand{\Sc}{\mathcal{S}}
+
+% ---- Front matter ------------------------------------------------------------
+\title{Fewer Giants, More Firms?\\Artificial Intelligence, Entry Costs, and the Firm Size Distribution\thanks{\placeholder{Acknowledgments, funding, data access, and AI-use disclosure statement.}}}
+\author{Gerard Spivey\\\href{mailto:gs@gspivey.com}{gs@gspivey.com}}
+\date{\placeholder{Preliminary draft} --- \today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent
+Artificial intelligence (AI) raises the productivity of incumbent firms, and a prominent concern is that large firms will use these gains to reduce headcount.
+Less attention has been paid to a second margin of adjustment: whether AI also lowers the cost of starting and scaling a new firm.
+We argue that the closest historical precedent is cloud computing, which converted the fixed cost of computing infrastructure into a variable cost and thereby reduced the capital required to launch a firm.
+This paper asks whether AI-induced firm formation can offset the employment that large incumbents shed.
+We develop a model of firm dynamics with endogenous entry and exit in which the AI shock has two components: a labor-saving change in the technology of incumbents and a reduction in the fixed costs of entry and operation.
+We discipline the entry-cost component using the cloud-computing era (2006--2020), calibrate the model to US business-dynamism moments, and use Monte Carlo simulation to characterize the conditions under which job creation at small and mid-sized firms and entrants offsets displacement at large incumbents.
+The cloud era is a cautionary precedent: lower computing costs coincided with rising employment concentration and a falling startup rate, a pattern the model reproduces only when a labor-complementary technology is combined with entry headwinds.
+Across 2,000 Monte Carlo draws, the probability that AI raises net employment is 81.7\%, but this headline is conditional: the labor-AI substitution elasticity explains 71\% of the variance in employment outcomes, while entry-cost reduction explains only 3\%.
+Below a displacement threshold ($\sigma_{\text{ai}} < 2.78$), offset is nearly universal (99.8\%); above it, offset depends on whether AI-native entrants are substantially more productive.
+We derive empirical signatures that distinguish offsetting entry from pure displacement and map them to administrative business data.
+Early survey evidence suggests AI is currently labor-complementary at adopting firms, but AI-native firms are markedly employment-light, and business applications with planned wages are falling even as total applications reach record highs.
+\end{abstract}
+
+\medskip
+\noindent\textbf{JEL codes:} D22, E24, J23, L11, L26, O33.\\
+\noindent\textbf{Keywords:} artificial intelligence, cloud computing, firm entry, firm size distribution, business dynamism, labor displacement.
+
+\newpage
+
+% ---- Body --------------------------------------------------------------------
+\input{sections/01-introduction}
+\input{sections/02-theory}
+\input{sections/03-cloud-parallel}
+\input{sections/04-ai-model}
+\input{sections/05-simulation}
+\input{sections/06-empirical-signatures}
+\input{sections/07-discussion}
+\input{sections/08-conclusion}
+
+% ---- References --------------------------------------------------------------
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

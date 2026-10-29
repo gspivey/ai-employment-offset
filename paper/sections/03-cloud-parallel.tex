@@ -1,0 +1,90 @@
+\section{The Cloud Computing Parallel, 2006--2020}\label{sec:cloud}
+
+% Role: empirical analogue that disciplines the entry-cost channel (kappa_e, kappa_f in sec:ai-model).
+
+\subsection{Why cloud computing is the right analogue}\label{sec:cloud-why}
+
+Before commercial cloud services, a new technology firm had to buy and operate its own servers before it could test whether its product had demand.
+The public launch of Amazon Web Services' storage and compute services in 2006 allowed firms to rent computing capacity by the unit instead, converting a fixed, sunk investment into a variable cost.
+\citet{ewens2018cost} exploit this change and show that lower costs of experimentation altered how venture investors financed early-stage firms in the affected sectors.
+In the model of \cref{sec:theory}, this shock maps naturally into a reduction of the entry cost $c_e$ and the fixed operating cost $c_f$, with no direct change in the labor requirement of incumbents.
+This is the sense in which cloud computing isolates one of the two channels of the AI shock.
+\placeholder{Add evidence on cloud adoption by firm size and age, for example \citet{jin2017economies}, and on the timing of diffusion in Europe relative to the United States.}
+
+\subsection{Data}\label{sec:cloud-data}
+
+We draw on multiple sources to characterize the cloud era.
+For the United States: the Census Bureau's Business Dynamics Statistics (BDS) provides firm and establishment entry, exit, and employment by firm size and age annually from 1978--2021 \citep{bds2021}; the Business Formation Statistics (BFS) track business applications and planned-wage intentions from 2004 \citep{bfs2026}.
+For Europe: Eurostat Structural Business Statistics and business demography statistics cover EU member states, and the OECD DynEmp database provides harmonized firm-level aggregates.
+
+Size-class definitions differ across sources.
+The upper bound of the band $\Bc$ aligns with the firm-size classes in the US data (5,000 employees), whereas European aggregate statistics typically group all firms with 250 or more employees, so the European analysis uses a narrower band where necessary.
+
+\subsection{Empirical findings: cloud produced concentration, not offset}\label{sec:cloud-findings}
+
+The 2006--2020 cloud era provides a cautionary baseline.
+Contrary to the hypothesis that lower fixed costs would proliferate small firms, US employment became more concentrated \citep{bds2021}:
+
+\begin{itemize}
+  \item \textbf{Small-firm employment share fell}: from 50.9\% (2006) to 47.0\% (2019) for firms with fewer than 500 employees, and about 90\% of the net rise in employment over the period occurred at firms with 500 or more employees.
+  \item \textbf{The startup rate declined}: the employer startup rate fell from 10.3\% (2006) to 8.5\% (2019), and the employment share of young firms (five years or younger) fell from 13.4\% to 10.6\%, continuing a secular decline that predates cloud computing \citep{decker2016declining}.
+  \item \textbf{The largest firms gained share}: firms with 10,000 or more employees raised their share of employment from 26.3\% to 29.2\%, consistent with the rise of superstar firms documented by \citet{autor2020fall}.
+  \item \textbf{Formation shifted to the nonemployer margin}: business applications rose 34\% between 2006 and 2019, while applications with planned wages fell 48\% \citep{bfs2026}.
+\end{itemize}
+
+The most cloud-exposed sector is a partial exception.
+The startup rate in Information (NAICS 51) recovered from 8.5\% in 2010 to 11.3\% in 2019, above its 2006 level of 10.6\%, whereas professional services, retail, and manufacturing remained below their 2006 levels \citep{bds2021}.
+Cloud computing also enabled notable successes (Airbnb, Stripe, Dropbox), but these firms ``graduated'' into the large-firm category rather than remaining in the small-firm band.
+
+\subsection{Why did cloud fail to offset?}\label{sec:cloud-mechanism}
+
+Our primary use of the cloud era is as a calibration target rather than a causal identification exercise.
+We ask what parameter configuration of the model replicates the cloud-era pattern of lower computing costs combined with rising concentration and falling dynamism.
+No single entry-side parameter does so: varying the entry cost, the fixed cost, entrant quality, or the founder pool on its own leaves the small-firm share rising.
+Matching all three moments requires two ingredients together:
+
+\begin{enumerate}
+  \item \textbf{Labor-complementary technology} ($\sigma < \theta \approx 2.78$): adopting firms expand rather than shed labor, so employment shifts toward large adopters. This ingredient alone produces concentration but \emph{raises} the startup rate.
+  \item \textbf{Entry headwinds}: a higher net employer entry cost, a smaller pool of potential entrants, and no productivity gain for cloud-native entrants, consistent with the regulatory, demographic, and labor-market forces behind declining dynamism \citep{akcigit2021ten}.
+\end{enumerate}
+
+\Cref{tab:cloud-results} reports the best-fitting configuration, which sets $\sigma = 2.0$, raises the employer entry cost by 20\%, and shrinks the founder pool by 20\%.
+The two ingredients separate cleanly: the technology parameter drives the size distribution, while the entry-side headwinds drive the decline in dynamism.
+Because the model's pre-shock levels are not calibrated to these moments, we compare changes rather than levels.
+
+\begin{table}[t]
+  \centering
+  \caption{Best-fitting cloud-era configuration: model versus data, 2006--2019}
+  \label{tab:cloud-results}
+  \begin{tabular}{lcc}
+    \toprule
+    \multicolumn{3}{l}{\textit{Parameters}} \\
+    $\sigma$ (substitution) & \multicolumn{2}{c}{$2.0$ (labor-complementary)} \\
+    Employer entry cost & \multicolumn{2}{c}{$+20\%$ (headwinds offset savings)} \\
+    Entrant productivity shift & \multicolumn{2}{c}{$0$} \\
+    Founder pool & \multicolumn{2}{c}{$-20\%$ (declining dynamism)} \\
+    \midrule
+    Moment (change) & Model & Data \\
+    \midrule
+    Employment share of firms $<500$ (pp) & $-2.3$ & $-3.9$ \\
+    Startup rate (pp) & $-1.6$ & $-1.8$ \\
+    Young-firm employment share (pp) & $-3.1$ & $-2.8$ \\
+    \bottomrule
+  \end{tabular}
+  \smallskip
+  \footnotesize\textit{Notes: Model values average years 11--15 after the shock (centered on 2019) across 24 seeds, relative to a no-shock counterfactual. Data from \citet{bds2021}.}
+\end{table}
+
+The implication for AI is twofold.
+First, even labor-complementary AI ($\sigma_{\text{ai}} < 2.78$) could produce concentration if entry headwinds persist.
+Second, the offset found in \cref{sec:simulation} rests on an intact entry pipeline: imposing cloud-era founder headwinds on the baseline AI shock ($\sigma_{\text{ai}} = 3.5$, a 20\% cut in entry costs) turns a long-run net employment gain of about $+4\%$ into a loss of $-8.7\%$ after 13 years and $-15.4\%$ in the long run.
+
+\subsection{Empirical strategy}\label{sec:cloud-strategy}
+
+The calibration exercise disciplines the entry-cost channel while remaining agnostic about identification.
+For readers interested in the causal effect of cloud computing on entry, the canonical event-study design compares industries by their ex ante exposure,
+\begin{equation}\label{eq:cloud-event}
+  y_{jt} = \alpha_j + \lambda_t + \sum_{k \neq -1} \beta_k \, \bigl( \text{Exposure}_j \times \mathbf{1}\{t = 2006 + k\} \bigr) + X_{jt}'\gamma + \varepsilon_{jt},
+\end{equation}
+where $j$ indexes industries, $y_{jt}$ is an outcome such as the firm entry rate or the employment share of the band $\Bc$, and $\text{Exposure}_j$ measures pre-2006 reliance on computing infrastructure (e.g., IT capital intensity from the BEA).
+Because the aggregate US startup rate declined over this period \citep{decker2016declining}, identification comes from differences across industries relative to a common trend, not from changes in the aggregate series.

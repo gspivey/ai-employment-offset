@@ -1,0 +1,286 @@
+\section{Discussion}\label{sec:discussion}
+
+% Role: where the cloud analogy breaks, limitations of the design, and policy implications.
+
+\subsection{The two-layer structure of AI employment}\label{sec:disc-layers}
+
+The AI economy has a two-layer structure that inverts the cloud-era pattern and complicates the offset hypothesis.
+We distinguish \emph{AI infrastructure providers}---frontier labs (OpenAI, Anthropic), hyperscalers (Microsoft, Google, Amazon), and neoclouds (CoreWeave)---from \emph{AI application companies} that consume AI APIs without training their own models (Cursor, Lovable, Vercel).
+This distinction matters because the offset mechanism, if it operates, must work through the application layer; the infrastructure layer is a special case that does not generalize.
+
+\paragraph{Labs as the ``hyperscalers of AI.''}
+Frontier AI labs are analogous not to Databricks (a cloud \emph{user}) but to AWS itself---infrastructure providers on which other companies build.
+Anthropic's October 2026 S-1 reports compute and infrastructure costs equal to 48\% of revenue in the second quarter of 2026 \citep{anthropic2026s1}, with spending flowing to chip manufacturers (Nvidia), hyperscalers (AWS, Google Cloud), and data-center construction.
+The employment these firms create lands largely at old, large firms---Nvidia, Microsoft (about 223,000 employees as of June 2026; \citealp{techcrunch2026msftbuyout}), and Alphabet (roughly 190,000)---not at the labs themselves.
+Labs are capital-intensive, not labor-intensive, and their growth does not test the offset hypothesis for the broader economy.
+
+\paragraph{Hyperscaler capex-for-headcount substitution.}
+Microsoft offers the clearest case of a hyperscaler cutting headcount while expanding capital spending.
+On October 26, 2026 it extended a voluntary exit offer to about 60,000 employees---roughly a quarter of its workforce---at vice-president level and below in the United States, Canada, India, and the United Kingdom, with some data-center, sales, and marketing staff reportedly excluded \citep{techcrunch2026msftbuyout}.
+This is an eligibility figure, not an exit count; uptake had not been reported at the time of writing.
+The offer follows roughly 9,000 layoffs (just under 4\% of the workforce) beginning in July 2025 \citep{verdict2025msftlayoffs}, and a 2\% year-over-year decline in total headcount in fiscal 2026 \citep{msft2026fy26q4}.
+Over the same period capital expenditure rose steeply: from a planned \$80 billion for AI-enabled data centers in fiscal 2025 \citep{smith2025golden} to \$41 billion in the June 2026 quarter alone, with calendar-2026 capex guided to approximately \$175 billion \citep{msft2026fy26q4}.
+The pattern is consistent with Microsoft trading headcount for data-center capacity---the substitution dynamic our model describes at incumbents, here occurring at the infrastructure layer itself---although Microsoft frames the program as retooling its workforce for AI, and these aggregate figures cannot establish that capex is causing the exits.
+More broadly, Bridgewater reportedly estimates that Alphabet, Amazon, Meta, and Microsoft will spend about \$650 billion on AI infrastructure in 2026, up from about \$410 billion in 2025 \citep{hedgeco2026bridgewater}; we were unable to obtain Bridgewater's original publication.
+
+\paragraph{Neocloud capital constraints.}
+The ``neocloud'' model (purpose-built AI infrastructure competing with hyperscalers) is not a broad employment channel.
+% [claim] CoreWeave figures (headcount, revenue, debt, customer share) currently rest on Wikipedia; cite CoreWeave's 10-K/10-Q directly.
+CoreWeave, the leading neocloud, had 2,189 employees servicing \$5.13 billion in revenue (2025)---\$2.3 million per employee.
+More critically, CoreWeave carries \$35.1 billion in debt (June 2026) collateralized against contracts with hyperscalers (Microsoft represents 67\% of revenue).
+Without similar anchor contracts the barrier to entry for new neoclouds is high, so the slipstream behind hyperscaler infrastructure spending is narrow.
+
+\subsection{AI application companies: the real test}\label{sec:disc-applications}
+
+If the offset hypothesis has empirical content, it must operate through \emph{AI application companies}---firms that use AI APIs to build products, analogous to how Databricks used AWS.
+The evidence from this layer does not support offset in employment terms.
+
+\paragraph{Employment-light application firms.}
+% [claim] Cursor and Lovable figures rest on press reports aggregated by Wikipedia and Dealroom; cite the underlying Bloomberg/TechCrunch/Forbes articles.
+Cursor, which uses Claude and GPT-4 APIs to build an AI coding assistant, reached \$3 billion in annualized recurring revenue (May 2026) with approximately 300 employees---\$10 million in revenue per employee.
+Lovable, a Swedish ``vibe coding'' platform, reached \$200 million ARR (November 2025) with about 120 employees (\$1.7 million per employee).
+The cloud-era SaaS comparators in \cref{tab:ai-vs-cloud} operated at \$0.17--0.32 million per employee, and cloud-era SaaS firms generally at roughly \$0.25--0.45 million; Cursor's ratio is more than twenty times higher, and Lovable's five to ten times higher.
+The AI application layer is growing rapidly, but each firm absorbs little labor.
+
+\paragraph{Exit path disruption.}
+The graduation pathway that fed young-firm employment into the large-firm stock is being short-circuited by mega-acquisitions.
+% [claim] Acquisition facts (SpaceX--Cursor, SpaceX--xAI, Microsoft--Inflection, Google--Character.ai) need press or filing citations.
+SpaceX acquired Cursor for \$60 billion in August 2026; SpaceX also absorbed xAI (\$250 billion) in February 2026.
+Microsoft absorbed Inflection's staff in March 2024; Google licensed Character.ai and rehired its founders.
+In BDS terms, when SpaceX (founded 2002, age 24) acquires Cursor (founded 2022, age 4), Cursor's employees become ``old large firm'' employment.
+The young high-growth firms that \citet{haltiwanger2013who} credit with job creation are not surviving long enough to graduate as independent employers.
+
+\subsection{More firms, not more employers}\label{sec:disc-augment}
+
+The distinction between \emph{offset} (new firms creating jobs that replace those lost at incumbents) and \emph{employment-light formation} (new firms that produce with few or no employees) is empirically critical.
+
+Business Formation Statistics show record business applications, up 15.3\% in January--September 2026 relative to the same months of 2025, with Information sector applications up 39.8\% \citep{bfs2026}.
+Yet applications with planned wages---a proxy for intent to become an employer---fell 15.3\% over the same period.
+In Information, planned-wage applications fell from 12.3\% of total applications in 2019 to 4.8\% in 2026.
+Formation is responding at the firm-count margin, but not yet at the employer margin; this matches the event-study evidence in \cref{sec:signatures}, where the divergence of AI-exposed sectors is confined to low-propensity applications.
+Two caveats apply.
+The decline in planned-wage applications appears in every sector, so it is not specific to AI; and it continues a cloud-era trend, when such applications fell 48\% between 2006 and 2019 (\cref{sec:cloud-findings}).
+The pattern is nonetheless the one the model predicts when AI also applies to entrants (\cref{pred:entrant-size}): more firms, but fewer jobs per firm.
+
+\subsection{Implications for the original offset hypothesis}\label{sec:disc-offset-revised}
+
+\Cref{tab:ai-vs-cloud} summarizes the employment-intensity comparison.
+The evidence suggests that even if AI-native firm formation flourishes, the employment consequences differ fundamentally from the cloud era.
+Cloud computing reduced the cost of starting firms that then \emph{hired workers as they scaled}.
+AI reduces the \emph{need for workers} at firms that scale.
+The offset ratio $\Omega$ may approach unity in firm counts while remaining well below unity in employment.
+
+\begin{table}[t]
+  \centering
+  \caption{Valuation and revenue per employee: AI vs.\ cloud-era firms}
+  \label{tab:ai-vs-cloud}
+  \begin{tabular}{llrrrr}
+    \toprule
+    Company & Layer / Era & Valuation & Revenue & Employees & Rev./Emp. \\
+    \midrule
+    \multicolumn{6}{l}{\textit{AI Infrastructure (labs, neoclouds)}} \\
+    Anthropic (S-1, Oct 2026) & Lab & $\sim$\$1T & \$35B TTM & 5,300 & \$6.6M \\
+    OpenAI (2026) & Lab & \$840B & \$12B est. & 4,500 & \$2.7M \\
+    CoreWeave (2025) & Neocloud & \$27B & \$5.1B & 2,189 & \$2.3M \\
+    \midrule
+    \multicolumn{6}{l}{\textit{AI Applications (API consumers)}} \\
+    Cursor (May 2026) & Application & \$60B & \$3B ARR & 300 & \$10.0M \\
+    Lovable (2025--26) & Application & \$13.3B & \$200M ARR & 120 & \$1.7M \\
+    Vercel (Sep 2025) & Application & \$9.3B & \$300M est. & 550 & \$0.5M \\
+    \midrule
+    \multicolumn{6}{l}{\textit{Cloud-era SaaS (baseline)}} \\
+    Databricks (2021) & Cloud SaaS & \$38B & \$1.6B & 5,000 & \$0.32M \\
+    Snowflake (2020 IPO) & Cloud SaaS & \$70B & \$0.6B & 3,500 & \$0.17M \\
+    \bottomrule
+  \end{tabular}
+  \smallskip
+  \footnotesize\textit{Sources: Anthropic S-1 \citep{anthropic2026s1}; Cursor/Lovable/CoreWeave from Wikipedia citing Bloomberg, TechCrunch. Lovable valuation as of August 2026, revenue and headcount as of late 2025. Cloud-era figures from company filings at comparable stages.}
+  % [claim] Replace Wikipedia with primary sources and verify the cloud-era rows (Databricks 2021, Snowflake 2020) against filings.
+\end{table}
+
+\subsection{How AI differs from cloud computing}\label{sec:disc-differences}
+
+Beyond the two-layer structure, AI differs from cloud computing in ways that affect the offset ratio even within the application layer.
+
+\paragraph{Direct evidence from the S-1: AI as augmentation inside Anthropic.}
+Anthropic's October 2026 S-1 \citep{anthropic2026s1} provides evidence, disclosed under securities law, on how a frontier AI lab views its own technology's effect on labor.
+The filing reveals that ``over 90\% of the contributions to [Anthropic's] codebase in September 2026 were written by Claude,'' and that ``the average daily volume of code contributed per engineer'' rose 45$\times$ from 2024 to 2026.
+Yet the company grew from about 940 employees (December 2024) to about 5,300 (September 2026)---\textit{employment rose alongside AI-driven productivity gains}, the pattern the model associates with $\sigma_{\text{ai}} < \theta$ rather than displacement, although a single fast-growing firm cannot identify $\sigma_{\text{ai}}$.
+The filing explicitly frames Claude as enabling ``a comparatively small team to take on work that would traditionally require a far larger one,'' describing this as ``multiplying the impact of each person'' rather than replacing workers.
+
+Anthropic's risk factors acknowledge the displacement concern as a regulatory and reputational risk: the company warns that governments ``may intervene to slow the rate of adoption of AI'' if ``the rate of job displacement rapidly increases,'' and that it ``may from time to time voluntarily elect to take actions intended to ameliorate the impact of such displacement''---actions that ``would represent additional costs and expenditures for which [it] may not receive a corresponding commercial benefit.''
+To our knowledge, this is the first disclosure in a securities filing by a frontier lab that it views labor-displacement backlash as a material business risk that may require mitigation.
+
+\paragraph{Breadth of exposure.}
+% [claim] breadth relative to cloud needs a direct comparison, not only AI exposure scores.
+The effects of cloud computing were concentrated in sectors that relied heavily on computing, whereas measures of exposure to large language models span a wide range of occupations \citep{eloundou2024gpts}.
+A broader shock raises both displacement and the scope for entry, so its net effect on $\Omega$ is ambiguous.
+
+\paragraph{Complementary investments and timing.}
+General-purpose technologies require complementary intangible investments before they raise measured productivity \citep{brynjolfsson2021productivity}.
+If incumbents capture these gains before entrants can, the displacement channel leads the entry channel, which reinforces the timing problem described in \cref{sec:intro}.
+
+\paragraph{Market structure of the input.}
+The AI input market is highly concentrated: as of 2026, foundation model development is dominated by a handful of labs (OpenAI, Anthropic, Google DeepMind, Meta AI), and compute capacity is controlled by a small number of cloud providers and chip manufacturers.
+This concentration may allow non-competitive pricing of AI services, raising the price $r$ and hence lowering $w/r$ in \cref{eq:displacement-condition} below what a commodity market would deliver.
+If AI services are priced above marginal cost, the productivity effect of a given task share shrinks and fewer firms clear the adoption cutoff in \cref{eq:adoption-cutoff}; in the CES specification the threshold $\theta$ itself is unaffected, so supra-competitive pricing scales down AI's employment effects rather than changing their sign.
+However, concentration also creates hold-up risk for AI-dependent entrants, potentially raising effective entry barriers despite lower technical costs of starting a firm.
+
+\subsection{Europe: a transatlantic comparison}\label{sec:disc-europe}
+
+\Cref{pred:us-europe} predicts a smaller entry response in Europe.
+This subsection checks the premises of that prediction against data, sets out what the AI Act changes at the entry margin, and asks whether the offset mechanism is more or less likely to operate in Europe.
+\Cref{tab:us-europe} summarizes the comparison; underlying computations and sources are in \texttt{data/europe\_evidence.md}.
+
+\begin{table}[t]
+  \centering
+  \caption{United States vs.\ Europe: entry, finance, regulation, and labor-market rigidity}
+  \label{tab:us-europe}
+  \small
+  \begin{tabular}{p{4.6cm}p{4.3cm}p{5.4cm}}
+    \toprule
+    Dimension & United States & European Union \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Business formation}} \\
+    Employer start-up rate & 9.1\% (2023) & 4.8\% (2024); 5.2\% (2021) \\
+    \quad in ICT / Information & 12.0\% (NAICS 51, 2022) & 6.4\% (NACE J, 2024); 7.7\% (2022) \\
+    Births with no employees & n/a (nonemployer series) & 84\% of all births (2024) \\
+    \midrule
+    \multicolumn{3}{l}{\textit{AI finance and adoption}} \\
+    Private AI investment, 2025 & \$285.9B & \$20.9B (ratio $\approx$ 14); 9--12$\times$ in Crunchbase/Dealroom \\
+    AI use, large vs.\ small firms & 1.7$\times$ (250+ vs.\ 1--4) & 3.2$\times$ (250+ vs.\ 10--49, 2025) \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Entry costs and regulation}} \\
+    Admin.\ burden on start-ups (PMR, 0--6) & 2.03 & 1.11 (SE) -- 2.74 (DE); FR 1.60, IT 1.80 \\
+    AI-specific horizontal regulation & None at federal level & AI Act; high-risk duties from Dec 2027 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Labor-market rigidity}} \\
+    EPL, regular contracts (0--6) & 0.77 & 1.94 (DK) -- 2.88 (NL); DE 2.33, FR 2.68, IT 2.86 \\
+    \bottomrule
+  \end{tabular}
+  \smallskip
+
+  \footnotesize\raggedright\textit{Sources:} US start-up rates from the Business Dynamics Statistics \citep{bds2021}; EU employer start-up rate = births with $\geq 1$ employee $\div$ active enterprises with $\geq 1$ employee, business economy excl.\ holding companies \citep{eurostat2026bdsize}.
+  AI investment from \citet{hai2026aiindex}, with \citet{dealroom2026ai} as a cross-check; adoption ratios from BTOS \citep{btos2026oct} and \citet{eurostat2026isoc} (EU survey excludes firms with fewer than 10 persons employed).
+  PMR indicator ``administrative requirements for limited liability companies and personally owned enterprises'' \citep{oecd2024pmr}; EPL Version 4, individual and collective dismissals, 2019 \citep{oecd2020epl}.
+  Levels are not strictly comparable across the Atlantic (enterprise vs.\ firm units; persons employed vs.\ employees).
+\end{table}
+
+\paragraph{Business formation.}
+Europe forms employers at roughly half the US rate.
+In 2024, 4.8\% of EU-27 enterprises with at least one employee were newly born, against a BDS start-up rate of 9.1\% in 2023 \citep{eurostat2026bdsize,bds2021}.
+The EU's headline birth rate (10.4\%) looks higher only because 84\% of European births have no employees.
+The early generative-AI years also differ in direction.
+US business applications surged, led by the Information sector (\cref{sec:disc-augment}).
+In the EU, employer births in information and communication \emph{fell} from 7.7\% (2022) to 6.4\% (2024), and in computer programming (J62) from 8.9\% to 7.0\%, while the zero-employee share of births edged up.
+Europe therefore shows the employment-light composition seen in the United States, without the US surge in formation.
+Harmonized DynEmp evidence adds that young firms are the main source of net job creation in every country covered, but that the post-entry growth of surviving start-ups varies widely across countries and is tied to national policy \citep{criscuolo2014dynamics,calvino2016no}; business dynamism has also declined across OECD economies, mainly within sectors \citep{calvino2020declining}.
+
+\paragraph{AI start-up funding.}
+In 2025, private AI investment was \$285.9 billion in the United States against \$20.9 billion in Europe \citep{hai2026aiindex}, a ratio of about 14.
+Other databases put the ratio at 9 to 12, and the gap is concentrated in growth and late-stage rounds, where more than half of European AI capital comes from non-European, mostly US, investors \citep{dealroom2026ai}.
+Europe has produced AI-native application firms (Lovable in \cref{tab:ai-vs-cloud}), but the capital that lets an entrant scale to the band $\Bc$ is far thinner.
+In the model, this maps most naturally to a smaller productivity advantage for AI-native entrants, the parameter that decides offset once $\sigma_{\text{ai}}$ exceeds the displacement threshold (\cref{sec:simulation}).
+
+\paragraph{Entry costs: the premise needs refining.}
+\Cref{pred:us-europe} assumed that general entry costs are higher in Europe.
+The OECD's product-market regulation indicators do not support this.
+On the administrative requirements for setting up a limited liability company or a sole proprietorship, the United States scores 2.03 on a 0--6 scale, above France (1.60), Italy (1.80), Spain (1.39), and Sweden (1.11), and below only Germany (2.74) and the Netherlands (2.21) \citep{oecd2024pmr}.
+The US economy-wide PMR score (1.58) is higher than that of every large EU economy.
+The transatlantic gap in employer formation is therefore not explained by registration costs.
+It lines up with three other differences: employment protection, scale-up finance, and, prospectively, AI-specific regulation.
+
+\paragraph{The AI Act and the entry margin.}
+The AI Act \citep{euaiact2024} adds a cost that has no US federal counterpart, and its incidence differs by firm size.
+Its core obligations for high-risk systems (risk management, data governance, technical documentation, human oversight, a quality-management system, and conformity assessment) are largely fixed costs: they scale with the number of systems a firm places on the market, not with its headcount.
+Estimates prepared for the Commission put aggregate compliance costs at 4--5\% of investment in high-risk AI, plus 2--5\% for verification \citep{ec2021aiactia}; independent estimates put the set-up cost of a new quality-management system at roughly EUR~193,000--330,000, with about EUR~71,000 a year to maintain it \citep{laurer2021clarifying}.
+An incumbent with established compliance functions (ISO management systems, GDPR, sectoral regulation) absorbs much of this within existing processes; for a five-person entrant the same outlay can be comparable to its seed round.
+In the notation of \cref{sec:ai-entry}, the Act raises $\kappa_e$ for entrants in high-risk uses and raises the fixed cost of adoption, partly offsetting the reduction in entry costs that AI otherwise delivers.
+
+Three features limit this effect.
+First, the Act is proportionate by design: for SMEs and start-ups each fine is capped at the \emph{lower} of the percentage-of-turnover and fixed-amount ceilings (Art.~99(6)), conformity-assessment fees are reduced in proportion to size, and SMEs get priority access to regulatory sandboxes (Art.~62) and simplified technical documentation (Art.~11).
+The Digital Omnibus on AI \citep{euaiomnibus2026} extended these privileges to small mid-caps (fewer than 750 employees), which covers much of the band $\Bc$ in European size terms.
+Second, incidence is narrow: most AI-application start-ups (coding tools, marketing, productivity software) fall outside the high-risk categories in Annex~III and face only the transparency duties of Art.~50.
+The exposure is concentrated in employment, credit, education, and essential-services applications, where an entrant's product \emph{is} the high-risk system.
+Third, timing: the Omnibus deferred stand-alone high-risk obligations from August 2026 to December 2027, and obligations for AI embedded in regulated products to August 2028.
+The Act's main cost so far is uncertainty rather than compliance outlays: among EU enterprises that considered using AI, 52.5\% cited unclear legal consequences as a barrier \citep{eurostat2026isoc}.
+
+\paragraph{Labor-market rigidity.}
+The largest structural difference is employment protection.
+On the OECD's index for individual and collective dismissals of regular workers, the United States scores 0.77, against 2.33 in Germany, 2.68 in France, 2.86 in Italy, and an OECD average of 2.20 \citep{oecd2020epl}.
+Firing costs act on both sides of the offset ratio $\Omega$.
+In the denominator, they slow the rate at which AI-adopting incumbents can shed labor; adjustment then runs through attrition and hiring freezes rather than layoffs, and the measured loss at incumbents is smaller and later \citep{hopenhayn1993job}.
+In the numerator, they also slow entrants' scale-up: stricter employment protection is associated with a less dynamic firm-growth distribution, with fewer fast-growing young firms, in labor- and R\&D-intensive sectors \citep{bravobiosca2016drives}.
+Because AI-native entrants are already employment-light, the second effect weighs on precisely the hiring that offset requires.
+
+\paragraph{Is offset more or less likely in Europe?}
+To gauge the combined effect, we rerun the Monte Carlo of \cref{sec:simulation} under a stylized European parameterization, holding the technology draws ($\sigma_{\text{ai}}$), the uniform quantiles of every other prior, and the simulation seeds fixed across scenarios, so that differences reflect institutions only.
+Each European channel is switched on in turn:
+(i) a potential-entrant pool scaled by 0.53, the ratio of the EU employer birth rate to the US start-up rate;
+(ii) AI Act compliance, which caps the AI-induced entry-cost reduction at 20\% (against 30\%) and raises the adoption fixed cost from $U(2,10)$ to $U(3,12)$;
+(iii) thinner growth finance, which caps the AI-native entrant productivity shift at 0.10 (against 0.15).
+\Cref{tab:eu-mc} reports the results; the US scenario reproduces the headline probability of \cref{sec:simulation}.
+
+\begin{table}[t]
+  \centering
+  \caption{Offset under US and stylized European parameterizations}
+  \label{tab:eu-mc}
+  \small
+  \begin{tabular}{lcccc}
+    \toprule
+    Scenario & $P(\text{offset})$ & $P(\text{offset} \mid \sigma_{\text{ai}} > 2.78)$ & Median net effect & Mean diff.\ vs.\ US (pp) \\
+    \midrule
+    United States & 81.7\% & 75.3\% & $+9.7\%$ & --- \\
+    EU: smaller entry pool & 80.5\% & 74.1\% & $+9.8\%$ & $-0.2$ (0.3) \\
+    EU: AI Act costs & 79.3\% & 72.0\% & $+8.4\%$ & $-1.3$ (0.1) \\
+    EU: thinner growth finance & 73.1\% & 63.6\% & $+5.2\%$ & $-4.3$ (0.2) \\
+    EU: all channels & 69.7\% & 59.3\% & $+4.8\%$ & $-5.5$ (0.3) \\
+    \bottomrule
+  \end{tabular}
+  \smallskip
+
+  \footnotesize\raggedright\textit{Notes:} 1,000 draws per scenario with common random numbers; offset means the net employment effect is positive.
+  Standard errors of the paired difference in parentheses.
+  Generated by \texttt{scripts/europe\_comparison.py}; full output in \texttt{data/europe\_comparison.md}.
+  The model has no firing costs, so the EPL channel is not included.
+\end{table}
+
+Three results stand out.
+First, offset is less likely in Europe: with all channels on, $P(\text{offset})$ falls from 81.7\% to 69.7\%, and from 75.3\% to 59.3\% in the displacing region $\sigma_{\text{ai}} > 2.78$; offset fails in 15.8\% of draws where it holds under US parameters.
+Second, the gap comes mainly from growth finance, not from entry costs.
+A smaller founder pool barely moves the proportional employment effect, and AI Act compliance costs lower the net effect by 1.3 percentage points; thinner scale-up finance accounts for most of the 5.5-point gap.
+This mirrors the variance decomposition for the United States, in which entrant productivity matters six times as much as the entry-cost cut.
+Third, the AI Act's effect is real but second-order at the aggregate level, consistent with its narrow incidence.
+Its bite is sector-specific: in the high-risk categories, which overlap the information, finance, and professional-services sectors where displacement is largest, the Act raises entry costs precisely where offset is most needed.
+
+These magnitudes are illustrative.
+The mappings from data to parameters are stylized, and the omitted EPL channel cuts both ways: it should damp measured displacement at European incumbents (making $\Omega$ easier to reach in the short run) while also slowing the scale-up of entrants (making it harder in the long run).
+The qualitative conclusion is robust to that ambiguity.
+Europe's lower AI-driven displacement risk in the near term comes from institutions that slow reallocation, not from a stronger entry response, and the channel the model identifies as decisive, AI-native entrants scaling into employers, is the one where Europe is weakest.
+For \cref{pred:us-europe}, the testable implication is that the transatlantic gap should appear in post-entry growth (the employment of surviving AI-exposed entrants at ages 3--5, observable in DynEmp-style data) more than in entry rates.
+
+\subsection{Limitations}\label{sec:disc-limitations}
+
+\begin{itemize}
+  \item \textbf{Analogue validity.} The cloud era identifies the response of entry to lower fixed costs; it is informative about AI only insofar as $\kappa_e$ and $\kappa_f$ capture how AI changes those costs.
+  \item \textbf{Job counts versus job quality.} The offset ratio counts jobs; it is silent on wages, job security, and the matching of displaced workers to new firms.
+  \item \textbf{Firms below five employees.} The band $\Bc$ excludes very small firms and nonemployer businesses, which may absorb part of the entry response; we report $\Delta N^{\Sc}$ separately where data allow.
+  \item \textbf{Choice of band.} The bounds of $\Bc$ follow data availability, and the Monte Carlo uses smaller, current-size cutoffs (20 and 500 employees; \cref{sec:sim-design}) because the model economy has few very large firms. \placeholder{Report robustness of the offset statistics to alternative cutoffs and to pre-shock cohort classification.}
+  \item \textbf{Partial equilibrium.} The baseline simulations hold wages fixed (perfectly elastic labor supply). A finite labor-supply elasticity would damp both gains and losses. General-equilibrium product-market effects (AI raises output, which raises labor demand) are also omitted.
+  \item \textbf{Sector heterogeneity.} The Monte Carlo treats sectoral AI exposure as fixed. In reality, high-exposure sectors (information, finance) may never achieve offset while low-exposure sectors (goods production, trade) always do; aggregate results depend on cross-sector labor reallocation, which the model does not endogenize.
+\end{itemize}
+
+\subsection{Policy implications}\label{sec:disc-policy}
+
+If the offset ratio depends on entry costs, policies that affect the cost of starting and scaling a firm---licensing, access to finance, and access to AI services and compute---shape the labor-market consequences of AI alongside policies aimed at displaced workers.
+In Europe, the AI Act \citep{euaiact2024} raises fixed compliance costs for entrants in high-risk uses, though its SME and small-mid-cap provisions \citep{euaiomnibus2026} narrow the gap with incumbents. The comparison in \cref{sec:disc-europe} suggests that the larger lever for offset in Europe is scale-up finance for AI-native entrants, not the cost of entry.
+
+Our analysis suggests three policy-relevant findings:
+
+\begin{enumerate}
+  \item \textbf{Entry-cost reduction alone is not sufficient.} The Monte Carlo shows that entry-cost reduction explains only 3\% of the variance in aggregate employment outcomes, although it explains a quarter of the variance in small-firm employment. Reducing barriers to starting a business will not produce offset if AI is strongly labor-displacing ($\sigma_{\text{ai}} > 2.78$) and AI-native entrants are not substantially more productive. The cloud-era replication (\cref{sec:cloud-mechanism}) adds that the entry pipeline as a whole---the pool of founders and the cost of becoming an employer---matters more than the cost of computing.
+  
+  \item \textbf{Monitor $\sigma_{\text{ai}}$ empirically.} The displacement threshold is the most policy-relevant unknown. Early survey evidence \citep{btos2026oct} suggests $\sigma_{\text{ai}}$ is currently below the threshold; if this changes, the offset probability falls sharply.
+  
+  \item \textbf{Sector-specific policies may be warranted.} High-exposure sectors (information, finance) face structural barriers to offset that low-exposure sectors do not. Retraining and labor-mobility programs may be more important than entry-cost reduction in sectors where offset is unlikely regardless of policy.
+\end{enumerate}

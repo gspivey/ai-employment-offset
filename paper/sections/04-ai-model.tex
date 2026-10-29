@@ -1,0 +1,103 @@
+\section{Formalizing the AI Shock}\label{sec:ai-model}
+
+% Role: adds the two-channel AI shock to the baseline in sec:theory; defines the offset ratio used in sec:simulation.
+
+We model the AI shock as a combination of the displacement channel emphasized in the automation literature and the entry-cost channel suggested by the cloud era.
+
+\begin{assumption}[Two-channel AI shock]\label{ass:ai-shock}
+The AI shock is a vector $\Phi = (\phi, \kappa_e, \kappa_f)$, where $\phi \in [0,1)$ is the share of production tasks that AI can perform, and $\kappa_e, \kappa_f \in (0,1]$ scale the entry cost and the fixed operating cost to $\kappa_e c_e$ and $\kappa_f c_f$.
+\end{assumption}
+
+\subsection{Displacement at incumbents}\label{sec:ai-displacement}
+
+Following the task-based approach of \citet{acemoglu2018race}, we replace the labor input in \cref{eq:production} with a Cobb--Douglas aggregate of a unit continuum of tasks,
+\begin{equation}\label{eq:tasks}
+  y = z X^{\alpha}, \qquad \ln X = \int_0^{\phi} \ln a(i)\, di + \int_{\phi}^{1} \ln n(i)\, di,
+\end{equation}
+where tasks $i \le \phi$ are performed by AI services $a(i)$, rented at unit price $r$, and the remaining tasks by labor $n(i)$ at wage $w$.
+With $\phi = 0$, \cref{eq:tasks} reduces to \cref{eq:production}.
+The unit cost of $X$ is $c(\phi) = r^{\phi} w^{1-\phi}$, and firm employment $n = \int_\phi^1 n(i)\,di$ is
+\begin{equation}\label{eq:ai-labor-demand}
+  n(z;\phi) = \frac{1-\phi}{w} \, (\alpha z)^{\frac{1}{1-\alpha}} \, c(\phi)^{-\frac{\alpha}{1-\alpha}} .
+\end{equation}
+% [rigor] Author to verify the derivation of eq:ai-labor-demand and eq:displacement-condition.
+Holding $w$ and $r$ fixed, a marginal increase in $\phi$ changes firm employment by
+\begin{equation}\label{eq:displacement-condition}
+  \frac{\partial \ln n}{\partial \phi} = -\frac{1}{1-\phi} + \frac{\alpha}{1-\alpha} \ln\frac{w}{r} .
+\end{equation}
+The first term is the displacement effect and the second the productivity effect.
+A firm sheds labor when the displacement effect dominates, which is more likely when returns to scale are strongly decreasing (low $\alpha$) or when the cost advantage of AI over labor is small.
+Size-dependent adoption, through which large incumbents automate first, is introduced in \cref{sec:ai-entry}.
+
+\subsection{CES specification and the displacement threshold}\label{sec:ai-ces}
+
+The task-based formulation fixes the elasticity of substitution between AI and labor at one.
+For the quantitative analysis we generalize it: a firm that adopts AI produces $y = z X^{\alpha}$ with a CES bundle
+\begin{equation}\label{eq:ces-bundle}
+  X = \Bigl[ (1-\omega)\, n^{\frac{\sigma_{\text{ai}}-1}{\sigma_{\text{ai}}}} + \omega\, a^{\frac{\sigma_{\text{ai}}-1}{\sigma_{\text{ai}}}} \Bigr]^{\frac{\sigma_{\text{ai}}}{\sigma_{\text{ai}}-1}},
+\end{equation}
+where $\omega$ is the weight on AI services and $\sigma_{\text{ai}}$ is the labor-AI elasticity of substitution.
+Let $c$ denote the unit cost of $X$.
+Cost minimization gives $n = (1-\omega)^{\sigma_{\text{ai}}} (w/c)^{-\sigma_{\text{ai}}} X$, and profit maximization gives $X \propto (\alpha z / c)^{\theta}$ with $\theta = 1/(1-\alpha)$.
+Holding $w$ fixed, firm employment therefore satisfies
+\begin{equation}\label{eq:ces-elasticity}
+  \frac{\partial \ln n}{\partial \ln c} = \sigma_{\text{ai}} - \theta .
+\end{equation}
+% [rigor] Author to verify eq:ces-elasticity; it treats c as the only margin moved by AI.
+Adopting AI lowers $c$, so it raises headcount at a firm of given productivity if and only if $\sigma_{\text{ai}} < \theta$, which is the threshold in \cref{eq:threshold}.
+Below the threshold the scale effect dominates; above it the substitution effect dominates.
+
+\subsection{Lower barriers to entry and operation}\label{sec:ai-entry}
+
+The parameters $\kappa_e$ and $\kappa_f$ capture the cloud-like component of AI: tasks that previously required dedicated staff or fixed investment at the start of a firm's life become available as a rented service.
+A lower entry cost raises the mass of entrants through \cref{eq:free-entry}, and a lower fixed operating cost lowers the exit threshold $z^{*}$, so that smaller and less productive firms survive.
+\placeholder{Derive the comparative statics of $M_e$, $z^{*}$, and $\mu$ with respect to $\kappa_e$ and $\kappa_f$ under the chosen labor-supply assumption.}
+Because $\phi$ also applies to entrants, the AI shock reduces the employment of a new firm of given productivity, so more firms need not mean more jobs.
+
+\paragraph{AI-native entrants.}
+AI may also change the quality of entrants.
+We allow the log-productivity distribution $G$ from which entrants draw to shift by $\Delta\mu_e \ge 0$ after the shock, capturing the possibility that firms built around AI from the start are more productive than counterfactual entrants.
+
+\paragraph{Size-selective adoption.}
+Firms pay a per-period fixed cost $F_{\text{ai}}$ to adopt AI.
+Because the profit gain from adoption is proportional to $z^\theta$ while $F_{\text{ai}}$ is fixed, only firms above a productivity (and hence size) cutoff adopt.
+This generates the pattern emphasized in surveys: large incumbents adopt first, concentrating any displacement effect at the top of the size distribution.
+The cutoff productivity $\underline{z}$ satisfies $\pi_{\text{ai}}(\underline{z}) = \pi_{\text{no}}(\underline{z})$, or equivalently,
+\begin{equation}\label{eq:adoption-cutoff}
+  K_{\text{ai}}(\underline{z})^\theta - K_{\text{no}}(\underline{z})^\theta = F_{\text{ai}},
+\end{equation}
+where $K_{\text{ai}}$ and $K_{\text{no}}$ are the profit coefficients with and without AI adoption.
+At the baseline calibration ($F_{\text{ai}} = 5$), adoption is concentrated among firms with 100+ employees.
+
+\subsection{The offset ratio}\label{sec:ai-offset}
+
+To measure whether firm formation offsets displacement, we classify firms by their size class before the shock, which avoids attributing a large firm that shrinks into the band $\Bc$ to the band's growth \citep[see the discussion of size classification in][]{haltiwanger2013who}.
+
+\begin{definition}[Offset ratio]\label{def:offset}
+Let $\Delta N^{\Lc} < 0$ be the change in employment at firms that were large before the shock, and let $\Delta N^{\Bc}$ be the change in employment at firms that were in the band $\Bc$ before the shock plus employment at entrants that reach the band.
+The offset ratio is
+\begin{equation}\label{eq:offset-ratio}
+  \Omega(\Phi) = \frac{\Delta N^{\Bc}}{-\Delta N^{\Lc}} .
+\end{equation}
+Firm formation fully offsets displacement when $\Omega \ge 1$.
+\end{definition}
+
+\begin{proposition}[Offset condition]\label{prop:offset}
+Let $\theta = 1/(1-\alpha)$ denote the displacement threshold.
+Firm formation fully offsets displacement ($\Omega \geq 1$) under the following conditions:
+
+\begin{enumerate}
+  \item[(i)] \textbf{Labor-complementary AI} ($\sigma_{\text{ai}} < \theta$): AI adoption raises rather than lowers headcount at adopting firms, so displacement is absent and the only effect of AI is to raise entry and productivity. Offset is nearly universal in this regime.
+  
+  \item[(ii)] \textbf{Labor-displacing AI} ($\sigma_{\text{ai}} > \theta$) with either:
+  \begin{itemize}
+    \item A sufficiently large entrant productivity shift: $\Delta\mu_e > \bar{\Delta\mu}_e(\sigma_{\text{ai}})$, where $\bar{\Delta\mu}_e$ is increasing in $\sigma_{\text{ai}}$; or
+    \item A large enough pool of AI-native entrants combined with moderate displacement: offset requires more entrants to compensate for each displaced worker.
+  \end{itemize}
+\end{enumerate}
+
+\end{proposition}
+
+\noindent
+With $\alpha = 0.64$ the threshold is $\theta \approx 2.78$.
+The Monte Carlo simulations in \cref{sec:simulation} quantify both regimes: below the threshold, P(offset) $= 99.8\%$; above it, P(offset) depends on the entrant productivity shift, collapsing to 27.8\% when $\sigma_{\text{ai}} > 3.5$ and $\Delta\mu_e < 0.05$, and reaching 99.3\% when $\Delta\mu_e \ge 0.10$.
