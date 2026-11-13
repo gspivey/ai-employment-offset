@@ -1,0 +1,81 @@
+\section{A Transatlantic Comparison}\label{app:europe}
+
+% Moved from the discussion (referee concern 8). Shares of draws under assumed priors, original (unnormalized) specification.
+
+\Cref{pred:us-europe} predicts a smaller entry-driven employment response in Europe.
+This appendix checks its premises against data and reports a stylized European parameterization of the model.
+\Cref{tab:us-europe} summarizes the comparison; computations and sources are in \texttt{data/europe\_evidence.md}.
+
+\begin{table}[h]
+  \centering
+  \caption{United States vs.\ Europe: entry, finance, regulation, and labor-market rigidity}
+  \label{tab:us-europe}
+  \small
+  \begin{tabular}{p{4.6cm}p{4.3cm}p{5.4cm}}
+    \toprule
+    Dimension & United States & European Union \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Business formation}} \\
+    Employer start-up rate & 9.1\% (2023) & 4.8\% (2024); 5.2\% (2021) \\
+    \quad in ICT / Information & 12.0\% (NAICS 51, 2022) & 6.4\% (NACE J, 2024); 7.7\% (2022) \\
+    Births with no employees & n/a (nonemployer series) & 84\% of all births (2024) \\
+    \midrule
+    \multicolumn{3}{l}{\textit{AI finance and adoption}} \\
+    Private AI investment, 2025 & \$285.9B & \$20.9B (ratio $\approx$ 14); 9--12$\times$ in Crunchbase/Dealroom \\
+    AI use, large vs.\ small firms & 1.7$\times$ (250+ vs.\ 1--4) & 3.2$\times$ (250+ vs.\ 10--49, 2025) \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Entry costs and regulation}} \\
+    Admin.\ burden on start-ups (PMR, 0--6) & 2.03 & 1.11 (SE) -- 2.74 (DE); FR 1.60, IT 1.80 \\
+    AI-specific horizontal regulation & None at federal level & AI Act; high-risk duties from Dec 2027 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Labor-market rigidity}} \\
+    EPL, regular contracts (0--6) & 0.77 & 1.94 (DK) -- 2.88 (NL); DE 2.33, FR 2.68, IT 2.86 \\
+    \bottomrule
+  \end{tabular}
+  \par\smallskip
+  \parbox{\linewidth}{\footnotesize\raggedright\textit{Sources:} US start-up rates from the BDS, 1978--2023 release \citep{bds2021}; EU employer start-up rate = births with $\geq 1$ employee $\div$ active enterprises with $\geq 1$ employee, business economy excluding holding companies \citep{eurostat2026bdsize}.
+  AI investment from \citet{hai2026aiindex}, with \citet{dealroom2026ai} as a cross-check; adoption ratios from BTOS \citep{btos2026oct} and \citet{eurostat2026isoc} (the EU survey excludes firms with fewer than 10 persons employed).
+  PMR indicator ``administrative requirements for limited liability companies and personally owned enterprises'' \citep{oecd2024pmr}; EPL Version 4, individual and collective dismissals, 2019 \citep{oecd2020epl}.
+  Levels are not strictly comparable across the Atlantic (enterprise vs.\ firm units; persons employed vs.\ employees).}
+\end{table}
+
+\paragraph{Formation, finance, and entry costs.}
+Europe forms employers at roughly half the US rate: in 2024, 4.8\% of EU-27 enterprises with at least one employee were newly born, against a BDS start-up rate of 9.1\% in 2023 \citep{eurostat2026bdsize,bds2021}; 84\% of European births have no employees.
+In the EU, employer births in information and communication fell from 7.7\% (2022) to 6.4\% (2024).
+Harmonized DynEmp evidence shows that young firms are the main source of net job creation in every country covered, but that the post-entry growth of surviving start-ups varies widely and is tied to national policy \citep{criscuolo2014dynamics,calvino2016no}; business dynamism has declined across OECD economies, mainly within sectors \citep{calvino2020declining}.
+Private AI investment in 2025 was \$285.9 billion in the United States against \$20.9 billion in Europe \citep{hai2026aiindex}, with the gap concentrated in growth and late-stage rounds \citep{dealroom2026ai}.
+Formal entry costs are not the difference: on the OECD's administrative-requirements indicator the United States scores 2.03, above France, Italy, Spain, and Sweden \citep{oecd2024pmr}.
+Employment protection is: the United States scores 0.77 on the OECD's dismissal index against an OECD average of 2.20 \citep{oecd2020epl}, and stricter protection is associated with fewer fast-growing young firms \citep{bravobiosca2016drives}.
+The AI Act \citep{euaiact2024} adds fixed compliance costs for high-risk uses, with SME provisions that the Digital Omnibus extended to small mid-caps and a deferral of stand-alone high-risk obligations to December 2027 \citep{euaiomnibus2026}; among EU enterprises that considered AI, 52.5\% cited unclear legal consequences as a barrier \citep{eurostat2026isoc}.
+
+\paragraph{A stylized European parameterization.}
+We rerun the original (unnormalized) Monte Carlo under three European channels, switched on in turn, holding the $\sigma_{\text{ai}}$ draws, the uniform quantiles of every other prior, and the simulation seeds fixed across scenarios:
+(i) a potential-entrant pool scaled by 0.53, the ratio of the EU employer birth rate to the US start-up rate;
+(ii) AI Act compliance, which caps the AI-induced entry-cost reduction at 20\% (against 30\%) and raises the adoption fixed cost from $\mathcal{U}(2,10)$ to $\mathcal{U}(3,12)$;
+(iii) thinner growth finance, which caps the AI-native entrant productivity shift at 0.10 (against 0.15).
+\Cref{tab:eu-mc} reports shares of draws under these assumed priors.
+Among draws in which large-firm labor demand falls, the share with a positive net effect is 61.0\% in the US scenario and 43.6\% with all European channels on.\footnote{The US scenario here uses 1,000 draws, against 2,000 in the main Monte Carlo of \cref{sec:sim-mc}, so its shares differ slightly from those reported there.}
+Most of the gap comes from thinner growth finance (a mean difference in the net effect of $-4.3$ percentage points), not from the entry pool ($-0.2$) or AI Act costs ($-1.3$).
+This mirrors the main finding that entrant productivity matters far more than entry costs.
+The model has no firing costs, so the employment-protection channel is omitted, and the mappings from data to parameters are stylized; the comparison has not been rerun under the normalized CES.
+
+\begin{table}[h]
+  \centering
+  \caption{Shares of draws under US and stylized European parameterizations (original specification)}
+  \label{tab:eu-mc}
+  \small
+  \begin{tabular}{lcccc}
+    \toprule
+    Scenario & Share net $>0$ & Share net $>0$ & Median net & Mean diff.\ vs.\ US \\
+    & (all draws) & (large-firm decline) & effect & (pp, s.e.) \\
+    \midrule
+    United States & 81.7\% & 61.0\% & $+9.7\%$ & --- \\
+    EU: smaller entry pool & 80.5\% & 58.0\% & $+9.8\%$ & $-0.2$ (0.3) \\
+    EU: AI Act costs & 79.3\% & 57.0\% & $+8.4\%$ & $-1.3$ (0.1) \\
+    EU: thinner growth finance & 73.1\% & 50.5\% & $+5.2\%$ & $-4.3$ (0.2) \\
+    EU: all channels & 69.7\% & 43.6\% & $+4.8\%$ & $-5.5$ (0.3) \\
+    \bottomrule
+  \end{tabular}
+  \par\smallskip
+  \parbox{\linewidth}{\footnotesize\raggedright\textit{Notes:} 1,000 draws per scenario with common random numbers; shares of draws under assumed priors, not probabilities. Mean differences are paired differences in the net labor-demand effect, with standard errors. Source: \texttt{scripts/europe\_comparison.py}, \texttt{data/europe\_comparison.md}.}
+\end{table}

@@ -8,99 +8,112 @@
 
 ## Overview
 
-This repository contains the code and data for the working paper examining whether AI-induced firm formation can offset employment displacement at large incumbents.
+Can firms created thanks to AI make up for the jobs that large incumbents shed as they adopt it? This repository
+holds the model, data and LaTeX sources for three related outputs, each making a different claim:
 
-**Key finding:** Under our priors, P(offset) = 81.7%, but this headline masks a threshold effect. Below σ_ai ≈ 2.78, offset is near-certain (99.8%); above it, the outcome depends on whether AI-native entrants are substantially more productive.
+| Output | Claim | Status | Source | PDF |
+|---|---|---|---|---|
+| **Short model note** | An analytical condition for when entry offsets displacement at adopters, and why entrant quality outweighs entry cost | Draft | `note/note.tex` | [`note/note.pdf`](note/note.pdf) |
+| **Quantitative macro paper** | Magnitudes for employment, wages and the labor share in an equilibrium model whose entry channel is disciplined by data | In revision after referee review (first tranche done; see below) | `paper/` | [`paper/main.pdf`](paper/main.pdf) |
+| **Plain-language summary** | Offset is possible, but only under conditions we can name and watch | Mirrors the blog post | `layman-summary/summary.tex` | [`layman-summary/summary.pdf`](layman-summary/summary.pdf) |
 
-📄 **[Read the full paper (PDF)](https://www.gspivey.com/papers/ai-employment-offset-paper.pdf)**  
-📝 **[Read the summary (blog post)](https://www.gspivey.com/posts/ai-jobs-offset-summary/)**
+**What the model shows.** New firms make up for jobs lost at adopting incumbents under some conditions and not
+others. Entry offsets displacement when adopting firms grow rather than shrink (the labor-AI elasticity of
+substitution is below the firm's scale elasticity), or when AI-native entrants are much more productive than the
+entrants they replace. It fails when AI substitutes easily for labor and entrants are no better. Cheaper entry
+matters much less than entrant quality unless the pool of potential founders is very elastic.
+
+**What it does not show.** All results are labor demand at a fixed wage; the simulated economy is not calibrated;
+Monte Carlo shares summarize assumed priors and are not probabilities about the world; the business-application
+evidence is descriptive. The October 2026 draft of the paper is superseded and should not be cited.
+
+<!-- TODO before sharing: update this link to the published post's URL (it will include the date, e.g. /posts/2026-11-12-ai-jobs-offset-summary/). -->
+📝 **[Read the blog post](https://www.gspivey.com/posts/ai-jobs-offset-summary/)**
 
 ---
 
-## Repository Structure
+## Revision status (referee round 1)
+
+`paper/REFEREE_RESPONSE.md` maps every referee comment to what was done. In short:
+
+| Referee concern | Status |
+|---|---|
+| sigma confounded with shock size | **Done.** Normalized CES (`ces_normalization="cost_saving"` in `model/parameters.py`); re-run regime map (`scripts/regime_map.py`) and Monte Carlo (`scripts/monte_carlo_normalized.py`). The high-sigma "plateau" in the original runs was an artifact of the normalization. |
+| Threshold depends on alpha | **Done in text and the note.** Stated for a general scale elasticity; alpha table; the note's boundary figure varies alpha. Not yet in the uncertainty analysis with recalibration. |
+| Probability language for prior-predictive shares | **Done.** Results presented as a regime map. |
+| No equilibrium (fixed wage, no demand curve) | **Not done.** Stated as a limitation; next workstream. |
+| Model not calibrated | **Partly.** Claims removed, model-versus-data table added; simulated method of moments not done. |
+| Cloud analogue does not discipline the AI priors | **Partly.** Demoted to motivation; the cloud estimation is not done. |
+| Thin empirics; newer entry papers | **Partly.** Updated to the November 12, 2026 Census vintage, positioned against the two 2026 entry papers, Finance and rival readings added; continuous-exposure study not done. |
+| Section 7 commentary, literature, minor comments | See `paper/REFEREE_RESPONSE.md`. |
+
+---
+
+## Repository structure
 
 ```
-├── model/                  # Core simulation model
-│   ├── firm_dynamics.py    # Hopenhayn-Luttmer firm dynamics
-│   ├── parameters.py       # Calibration and priors
-│   ├── simulation.py       # Single-run simulation
-│   └── monte_carlo.py      # Monte Carlo analysis (2,000 draws)
-│
-├── paper/                  # LaTeX source
-│   ├── main.tex            # Main document
-│   ├── sections/           # Section files (01-08)
-│   ├── figures/            # Generated figures
-│   └── references.bib      # Bibliography (63 citations, 37 DOIs)
-│
-├── scripts/                # Analysis scripts
-│   ├── bfs_causal_analysis.py    # BLS Business Formation Statistics
-│   ├── europe_comparison.py      # US vs EU analysis
-│   └── plot_sigma_threshold.py   # σ_ai threshold visualization
-│
-├── data/                   # Data and documentation
-│   ├── claim_registry.md   # Verification status of empirical claims
-│   ├── europe_evidence.md  # European data sources
-│   ├── hyperscaler_verification.md  # Big Tech CapEx/layoffs verification
-│   └── literature_review.md
-│
-├── companion/              # Study materials
-│   └── math-companion.md   # Formula breakdowns and reading list
-│
-├── tests/                  # Unit tests
-└── requirements.txt        # Python dependencies
+├── model/                       # Simulation model (firm dynamics, entry/exit, AI adoption)
+│   ├── firm_dynamics.py         #   production, CES labor-AI bundle, normalization, entry and exit
+│   ├── parameters.py            #   parameters and placeholders (incl. ces_normalization)
+│   ├── simulation.py            #   one economy over time, AI run vs. no-AI twin
+│   ├── calibration.py           #   moment targets (simulated method of moments is a stub)
+│   └── monte_carlo.py           #   prior draws
+├── note/                        # Short model note (LaTeX, bibliography, PDF)
+├── paper/                       # Macro paper (LaTeX sections, figures, PDF, referee response)
+├── layman-summary/              # Plain-language summary (LaTeX, PDF)
+├── scripts/
+│   ├── monte_carlo_t6.py            # original 2,000-draw Monte Carlo (AI price fixed)
+│   ├── monte_carlo_normalized.py    # same draws, normalized CES
+│   ├── monte_carlo_ai_cost.py       # sensitivity with the AI price drawn
+│   ├── prior_sensitivity.py         # reweighting under alternative sigma priors
+│   ├── regime_map.py                # sigma x entrant-shift map, 10 seeds per cell, both normalizations
+│   ├── note_regime_boundary.py      # analytic numbers and figure for the note
+│   ├── plot_note_regime.py          # simulated regime map for the note
+│   ├── bfs_causal_analysis.py       # Census business-application event study and permutations
+│   ├── plot_blog_bfs_gap.py         # blog/summary chart: AI-exposed sectors vs. Construction
+│   ├── plot_blog_applications.py    # applications vs. planned-wage applications, 2005-2025
+│   ├── plot_sigma_threshold.py, plot_offset_heatmap.py, europe_comparison.py, cloud_replication.py
+├── data/
+│   ├── bfs_raw/bfs_monthly.csv           # Census BFS, November 12, 2026 release
+│   ├── bfs_raw/bfs_monthly_vintage-2026-10.csv  # earlier vintage used by the October draft
+│   ├── regime_map.md, monte_carlo_*_results.md, note_numbers.md, prior_sensitivity.md
+│   ├── claim_registry.md, claim_sources_2026-11.md   # verification of factual claims
+│   └── ...                               # literature, Europe, cloud-era and hyperscaler notes
+├── companion/math-companion.md  # formula walkthroughs
+└── tests/                       # unit tests (normalization, threshold sign flip, model invariants)
 ```
 
 ---
 
-## Key Model Components
-
-### The Displacement Threshold
-
-The paper's central result: AI adoption raises firm headcount if and only if:
-
-$$\sigma_{ai} < \frac{1}{1-\alpha} \approx 2.78$$
-
-where σ_ai is the labor-AI substitution elasticity and α = 0.64 is the span-of-control parameter.
-
-### Monte Carlo Design
-
-- **2,000 draws** from parameter priors
-- **Common random numbers** for AI vs counterfactual comparison
-- **Sobol sensitivity indices** to decompose variance
-
-| Parameter | Prior | Sobol S₁ |
-|-----------|-------|----------|
-| σ_ai (substitution elasticity) | U(2, 5) | 0.71 |
-| Δμ_e (entrant productivity shift) | U(0, 0.15) | 0.18 |
-| κ_e (entry cost reduction) | U(0.7, 1.0) | 0.03 |
-
----
-
-## Running the Model
+## Reproducing the results
 
 ```bash
-# Install dependencies
-pip install -r requirements.txt
+python -m venv .venv && .venv/bin/pip install -r requirements.txt
+.venv/bin/python -m pytest -q                                   # tests
 
-# Run single simulation
-python -m model.simulation
-
-# Run Monte Carlo analysis (takes ~10 minutes)
-python -m model.monte_carlo --draws 2000 --output data/monte_carlo_raw.csv
-
-# Generate figures
-python scripts/plot_sigma_threshold.py
+.venv/bin/python scripts/regime_map.py --seeds 10                # regime map (about 1-2 min on 6 cores)
+.venv/bin/python scripts/monte_carlo_normalized.py               # normalized Monte Carlo (about 4 min)
+.venv/bin/python scripts/monte_carlo_t6.py                       # original Monte Carlo
+.venv/bin/python scripts/note_regime_boundary.py                 # note numbers and boundary figure
+.venv/bin/python scripts/plot_note_regime.py
+.venv/bin/python scripts/bfs_causal_analysis.py                  # Census event study (uses data/bfs_raw)
 ```
+
+The Census file is the public `bfs_monthly.csv` from the
+[Business Formation Statistics](https://www.census.gov/econ/bfs/) page. The PDFs build with any LaTeX
+distribution (or [Tectonic](https://tectonic-typesetting.github.io/)): run it on `paper/main.tex`,
+`note/note.tex` and `layman-summary/summary.tex` from their own directories.
 
 ---
 
-## Data Sources
+## Data sources
 
-- **BLS Business Formation Statistics** — establishment births, employer vs non-employer applications
-- **Census BTOS** — AI adoption and employment effects at establishments
-- **SEC 10-K filings** — Big Tech CapEx and layoffs (verified in `data/hyperscaler_verification.md`)
-- **OECD** — European business dynamics, employment protection indices
-- **Stanford HAI AI Index** — AI investment by region
+- **Census Business Formation Statistics**: business applications, planned-wage and high-propensity applications,
+  projected employer formations
+- **Census Business Trends and Outlook Survey** (AI supplement, via Bonney et al. 2026): AI use and AI-related
+  employment changes
+- **Business Dynamics Statistics, OECD, Eurostat, Stanford HAI AI Index**: firm dynamics and European comparisons
+- **Company filings and press** for the descriptive company comparisons (see `data/claim_sources_2026-11.md`)
 
 ---
 
@@ -109,24 +122,26 @@ python scripts/plot_sigma_threshold.py
 ```bibtex
 @unpublished{spivey2026fewer,
   author = {Spivey, Gerard},
-  title = {Fewer Giants, More Firms? {Artificial} Intelligence, Entry Costs, and the Firm Size Distribution},
-  year = {2026},
-  note = {Working paper},
-  url = {https://www.gspivey.com/papers/ai-employment-offset-paper.pdf}
+  title  = {Fewer Giants, More Firms? {Artificial} Intelligence, Entry Costs, and the Firm Size Distribution},
+  year   = {2026},
+  note   = {Working paper in revision; cite the repository, not the superseded October 2026 draft},
+  url    = {https://github.com/gspivey/ai-employment-offset}
 }
 ```
+
+The views expressed are the author's own and do not represent those of any employer.
 
 ---
 
 ## License
 
-Code: MIT License  
-Paper: © 2026 Gerard Spivey. All rights reserved.
+Code: MIT License
+Paper and note: © 2026 Gerard Spivey. All rights reserved.
 
 ---
 
 ## Contact
 
-Gerard Spivey  
-📧 gs@gspivey.com  
+Gerard Spivey
+📧 gs@gspivey.com
 🌐 [gspivey.com](https://www.gspivey.com)

@@ -104,6 +104,18 @@ class Parameters:
     #: diffusion in an exposure-1 sector (wage0 units). Price at diffusion S in
     #: sector s is ai_cost_full / (S * exposure_s).
     ai_cost_full: float = 1.5
+    #: CES normalization. "none" (the original runs): the AI price is fixed,
+    #: so sigma_ai also sets how much an adopter's unit cost falls (a low
+    #: sigma_ai is a much larger cost shock). "cost_saving": the AI price is
+    #: rescaled for each sigma_ai so that, at the reference point (full
+    #: diffusion, exposure-1 sector, wage0), adoption lowers the unit cost by
+    #: ai_cost_saving_target whatever sigma_ai is. sigma_ai then changes only
+    #: substitutability, not the size of the shock (Klump & de La Grandville
+    #: 2000; Leon-Ledesma, McAdam & Willman 2010).
+    ces_normalization: str = "none"
+    #: Unit-cost saving at the reference point under "cost_saving". 0.1165
+    #: reproduces the unnormalized model at sigma_ai = 3.5, ai_cost_full = 1.5.
+    ai_cost_saving_target: float = 0.1165
     #: Per-period fixed cost of operating AI (integration, data, compute
     #: contracts). Makes adoption selective on size.
     ai_adoption_fixed_cost: float = 5.0
@@ -168,6 +180,8 @@ class Parameters:
             check(len(self.ai_schedule) > 0, "ai_schedule must be non-empty")
             check(all(0.0 <= s <= 1.0 for s in self.ai_schedule), "ai_schedule values must be in [0, 1]")
         check(self.ai_cost_full > 0.0, "ai_cost_full must be positive")
+        check(self.ces_normalization in ("none", "cost_saving"), "ces_normalization must be 'none' or 'cost_saving'")
+        check(0.0 < self.ai_cost_saving_target < 1.0, "ai_cost_saving_target must be in (0, 1)")
         check(self.ai_adoption_fixed_cost >= 0.0, "ai_adoption_fixed_cost must be >= 0")
         n_sec = len(self.sector_names)
         check(n_sec >= 1, "need at least one sector")

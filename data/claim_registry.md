@@ -1,77 +1,82 @@
 # Claim Registry
 
-Tracks empirical claims in the paper, their sources, and verification status.
+Tracks the quantitative claims in the current paper (`paper/`) and its summary post, where each comes from, and whether it has been checked against a primary source. Rows from earlier drafts that the paper no longer makes have been removed (see git history).
 
 **Legend:**
-- ✓ = Verified against primary source
-- ✗ = Needs primary source verification  
-- ⚠ = Secondary source only (news, estimates)
+- ✓ = Verified against a primary source (filing, official data, or the cited paper itself)
+- ⚠ = Secondary source only (press, reprint of a blocked primary, or a single unnamed source)
+- ✗ = No primary source found; the paper must hedge or drop it
+- = = Computed by code in this repository
+
+Detailed evidence, quotes and URLs: `data/claim_sources_2026-11.md` (AI firms, cloud-era firms, acquisitions, BTOS), `data/hyperscaler_verification.md` (Microsoft and hyperscaler capex), `data/bfs_causal_analysis.md` (Census BFS tests), `data/monte_carlo_results.md` and `data/monte_carlo_aicost_results.md` (simulation).
 
 ---
 
-## Big Tech Layoffs (Section 2)
+## Model and simulation (Sections 4–5)
 
-| Claim | Value | Source | Status | Notes |
-|-------|-------|--------|--------|-------|
-| Meta layoffs 2022-2024 | 21,000 | SEC 10-K filings | ✓ | Verified by subagent |
-| Google layoffs 2023-2024 | 12,000 | News reports | ⚠ | Need 10-K |
-| Amazon layoffs 2023 | 27,000 | News reports | ⚠ | Need 10-K |
-| Microsoft layoffs 2023 | 10,000 | News reports | ⚠ | Need 10-K |
-| Total Big-5 workforce | ~9,000 net reduction | Calculation | ✓ | Corrected from 4.8k |
+| Claim | Value | Source | Status |
+|---|---|---|---|
+Shares below are shares of Monte Carlo draws under assumed priors. They are not probabilities about the world and
+must not be quoted as odds (referee round 1, rule 1). The original runs hold the AI price fixed, which confounds
+sigma_ai with the size of the shock; prefer the normalized results.
 
-## Hyperscaler CapEx (Section 7)
+| Claim | Value | Source | Status |
+|---|---|---|---|
+| Single-firm displacement threshold | σ_ai < θ, the scale elasticity; θ = 1/(1−α) = 2.78 only at α = 0.64 | Proposition 1 (Hicks–Marshall application) | ✓ |
+| Industry offset condition; entrant quality vs entry cost | Propositions 2–3 of the note | `note/note.tex`, `data/note_numbers.md` | ✓ (derived) |
+| Normalized regime map | net labor-demand effect by σ_ai × entrant shift, 10 seeds per cell | `data/regime_map.md` | = |
+| Normalized Monte Carlo variance shares (σ_ai / entrant shift / entry cost) | 0.62 / 0.25 / 0.04 (original: 0.71 / 0.19 / 0.04) | `data/monte_carlo_normalized_results.md` | = |
+| Original Monte Carlo replications | 2,000 draws + 60 noise runs, seed 2026 | `scripts/monte_carlo_t6.py` | = (superseded framing) |
+| Share of draws with offset given large-firm employment falls, AI price fixed | 59.2% | `monte_carlo_results.md` | = (do not quote as odds) |
+| Same, AI price drawn | 44.5% | `monte_carlo_aicost_results.md` | = (do not quote as odds) |
+| Same, alternative σ_ai priors | 55.7–63.3% | `prior_sensitivity.md` | = (do not quote as odds) |
+| Unconditional share of draws with offset | 81.7% (fixed price), 74.7% (drawn) | as above | = (do not quote as odds) |
+| Mean output effect, original | +61% (median +48%); an upper bound, wages and prices fixed | `monte_carlo_results.md` | = |
+| Europe vs US shares of draws | 69.7% vs 81.7% (all draws); 43.6% vs 61.0% (given large-firm decline) | `europe_comparison.md` | = (do not quote as odds) |
 
-| Claim | Value | Source | Status | Notes |
-|-------|-------|--------|--------|-------|
-| Big-4 cloud 2024 CapEx | $175B | 10-K filings | ✓ | MS+GOOG+AMZN+META |
-| Microsoft 2024 CapEx | $44.5B | 10-K | ✓ | |
-| Google 2024 CapEx | $52.5B | 10-K | ✓ | |
-| Amazon 2024 CapEx | $48B | 10-K | ✓ | |
-| Meta 2024 CapEx | $30B | 10-K | ✓ | |
+## Census data (Sections 3, 6, 7)
 
-## AI Application Companies (Section 3/7)
+| Claim | Value | Source | Status |
+|---|---|---|---|
+| Business applications, Jan–Sep 2026 vs 2025 | +15.3% | Census BFS (`bfs_raw/`) | ✓ |
+| Applications with planned wages, same window | −15.3% | Census BFS | ✓ |
+| High-propensity applications, same window | +4.7% | Census BFS | ✓ |
+| AI-exposed sectors (51+54) gap onset | March 2025; ≈ +41% (0.34 log pts) by Sep 2026 | `bfs_causal_analysis.md` | = |
+| 2026 gap rank among sector pairs | 10th of 171 (one-sided permutation p = 0.058) | `bfs_causal_analysis.md` | = |
+| AI-using firms reporting AI-driven employment cuts / increases | 2.0% / 2.3% firm-weighted (2.4% / 3.7% employment-weighted); denominator is AI-using firms | Bonney et al. (2026), NBER w35141, Table 4 | ✓ |
 
-| Claim | Value | Source | Status | Notes |
-|-------|-------|--------|--------|-------|
-| Cursor valuation | $9B (Jan 2025) | TechCrunch | ⚠ | Secondary |
-| Cursor ARR | $100M+ (2024) | Forbes | ⚠ | May be outdated |
-| Cursor employees | ~100 | Estimates | ✗ | Need primary |
-| Lovable valuation | $750M | TechCrunch | ⚠ | Secondary |
-| Lovable employees | ~50 | Estimates | ✗ | Need primary |
-| CoreWeave valuation | $35B | News | ⚠ | S-1 filed |
-| CoreWeave debt financing | $12.9B | S-1 filing | ✓ | |
+## AI and cloud-era firms (Section 7)
 
-## BLS/BFS Data (Section 4)
+| Claim | Value | Source | Status |
+|---|---|---|---|
+| CoreWeave employees / revenue, 2025 | 2,189 / $5.13B | FY2025 10-K | ✓ |
+| CoreWeave debt, June 2026 | ≈ $35.1B (sum of four balance-sheet lines) | Q2 2026 10-Q | ✓ (by summation) |
+| Microsoft share of CoreWeave revenue | 67% of 2025 revenue | FY2025 10-K | ✓ |
+| Cursor ARR | $3B, late April 2026 | Bloomberg (via reprint) | ⚠ |
+| Cursor headcount | ≈ 800, May 2026 | Business Insider (via reprint) | ⚠ |
+| Cursor acquisition | $60.0B implied equity value, closed 14 Aug 2026 | SpaceX 8-Ks | ✓ |
+| Lovable ARR / headcount | $400M / 146, Feb 2026 | TechCrunch | ⚠ |
+| Lovable valuation | $13.3B, Aug 2026 | Company blog, TechCrunch | ✓ |
+| Vercel valuation / run-rate / headcount | $9.3B (Sep 2025) / $340M (Feb 2026) / 550 (Jan 2025) | Company blog / TechCrunch citing Forbes / Fortune | ⚠ (dates mismatch) |
+| Snowflake revenue / employees, FY to Jan 2021 | $592.0M / 2,495 | 10-K | ✓ |
+| Snowflake valuation | $33.3B at IPO price (>$70B first-day close) | CNBC, Bloomberg | ⚠ |
+| Databricks valuation / ARR, 2021 | $38B / >$800M ARR at end-2021 | Press release / TechCrunch | ✓ / ⚠ |
+| Databricks 2021 headcount | — | none found | ✗ (removed from table) |
+| xAI value in SpaceX merger | $250B | Reuters, one unnamed source | ⚠ |
+| AI-native startups smaller in headcount | 12–25% | Kim & Koning (2026), HBS WP 26-090 | ✓ |
+| OpenAI and CoreWeave valuations in `tab:ai-vs-cloud` | $840B / $27B | press estimates | ⚠ |
+| GenAI exposure broader than cloud | — | no direct comparison found; paper now says it is a conjecture | ✗ |
 
-| Claim | Value | Source | Status | Notes |
-|-------|-------|--------|--------|-------|
-| Establishment births 2024 | ~430,000/quarter | BLS BFS | ✓ | Primary data |
-| Birth rate inflection | March 2025 | BLS BFS | ✓ | Corrected from 2023 |
-| Small firm employment share | 47% | BLS | ✓ | |
+## Hyperscalers (Section 7)
 
-## Model Parameters (Section 5)
-
-| Claim | Value | Source | Status | Notes |
-|-------|-------|--------|--------|-------|
-| σ_ai threshold | 1/(1-α) ≈ 2.78 | Derived | ✓ | CES derivation |
-| P(offset) US | 81.7% | Monte Carlo | ✓ | 10,000 runs |
-| P(offset) Europe | ~70% | Monte Carlo | ✓ | Higher frictions |
-
-## Literature Claims
-
-| Claim | Source | Status | Notes |
-|-------|--------|--------|-------|
-| Acemoglu-Restrepo automation framework | AER 2018, 2019, 2020 | ✓ | DOIs verified |
-| Webb 2020 AI exposure | Brookings | ✓ | DOI verified |
-| Autor 2024 new work creation | NBER | ✓ | Working paper |
-| Haltiwanger entry/exit dynamics | Multiple papers | ✓ | DOIs verified |
+See `data/hyperscaler_verification.md` (verified 2026-10-29): Microsoft's ~60,000-employee voluntary exit offer (eligibility, not exits), ~9,000 layoffs from July 2025, ~$175B calendar-2026 capex guidance.
 
 ---
 
-## Action Items
+## Open items
 
-1. **HIGH**: Get primary sources for Cursor/Lovable employee counts
-2. **MEDIUM**: Verify Google/Amazon/Microsoft layoffs against 10-K filings
-3. **LOW**: Track down CoreWeave employee count from S-1
+1. **MEDIUM**: Open the Bloomberg (Cursor ARR) and Business Insider (Cursor headcount) originals; current quotes come from reprints.
+2. **MEDIUM**: Find a primary 2021 Databricks headcount if the table should show its revenue per employee.
+3. **LOW**: Primary sources for the OpenAI and CoreWeave valuations in `tab:ai-vs-cloud`.
 
-Last updated: 2025-01-15
+Last updated: 2026-11-07
