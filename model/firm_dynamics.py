@@ -252,6 +252,23 @@ def ai_headcount_ratio(wage, ai_cost, params: Parameters):
     return (c / wage) ** (params.sigma_ai - params.theta)
 
 
+def reference_ai_price(params: Parameters) -> float:
+    """Effective AI price at full diffusion in an exposure-1 sector.
+
+    Under ``ces_normalization == "none"`` this is ``ai_cost_full``. Under
+    ``"cost_saving"`` it is the price r that makes the adopter's unit cost
+    c(w0, r) equal (1 - ai_cost_saving_target) * w0 for the current sigma_ai:
+    with c = (w^(1-s) + r^(1-s))^(1/(1-s)), r = w0 * (k^(1-s) - 1)^(1/(1-s)),
+    k = 1 - target. The cost saving at the reference point is then the same
+    for every sigma_ai, so sigma_ai no longer scales the shock.
+    """
+    if params.ces_normalization == "none":
+        return params.ai_cost_full
+    k = 1.0 - params.ai_cost_saving_target
+    e = 1.0 - params.sigma_ai
+    return params.wage0 * (k**e - 1.0) ** (1.0 / e)
+
+
 def ai_productivity_shock(diffusion: float, params: Parameters) -> AIState:
     """Map AI diffusion S in [0, 1] into the model's three AI channels.
 
@@ -265,7 +282,7 @@ def ai_productivity_shock(diffusion: float, params: Parameters) -> AIState:
     s = float(np.clip(diffusion, 0.0, 1.0))
     efficiency = s * np.asarray(params.sector_ai_exposure, dtype=float)
     with np.errstate(divide="ignore"):
-        ai_cost = np.where(efficiency > 0, params.ai_cost_full / efficiency, np.inf)
+        ai_cost = np.where(efficiency > 0, reference_ai_price(params) / efficiency, np.inf)
     entry_cost = params.entry_cost_pre + (params.entry_cost_post - params.entry_cost_pre) * s
     return AIState(
         diffusion=s,

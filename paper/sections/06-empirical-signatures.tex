@@ -1,14 +1,15 @@
 \section{Empirical Signatures}\label{sec:signatures}
 
-% Role: testable predictions that separate offsetting entry from pure displacement, each mapped to data.
+% Role: testable predictions that separate offsetting entry from pure displacement, each mapped to data,
+% plus descriptive evidence from business applications. No causal claims.
 
 The model implies a set of predictions that distinguish two hypotheses.
-Under \emph{pure displacement}, AI lowers employment at large incumbents with no offsetting response at the entry margin.
-Under \emph{offsetting entry}, the same shock also lowers the cost of starting and running a firm, so entry and employment in the band $\Bc$ rise in AI-exposed industries.
+Under \emph{pure displacement}, AI lowers labor demand at large incumbents with no offsetting response at the entry margin.
+Under \emph{offsetting entry}, the same shock also lowers the cost of starting and running a firm, so entry and employment below 500 employees rise in AI-exposed industries.
 Each prediction below is stated relative to less-exposed industries in the same country and year.
 
 \begin{prediction}[Incumbent headcount]\label{pred:incumbent}
-Employment at firms that were large before the shock falls in AI-exposed industries.
+Employment at firms that were large before the shock falls in AI-exposed industries, provided adopters are in the substitution-dominant region ($\sigma_{\text{ai}}$ above the scale elasticity).
 This prediction holds under both hypotheses and serves as a check that the exposure measure captures the displacement channel.
 \end{prediction}
 
@@ -18,11 +19,11 @@ Under pure displacement, entry does not respond, or falls if displaced workers f
 \end{prediction}
 
 \begin{prediction}[Entrant size]\label{pred:entrant-size}
-Average employment at entry falls, because the AI task share $\phi$ also applies to entrants, while the number of entrants rises.
+Average employment at entry falls, because AI is also available to entrants, while the number of entrants rises.
 \end{prediction}
 
-\begin{prediction}[Employment in the band]\label{pred:band}
-Employment at firms in the band $\Bc$, classified by pre-shock size and including entrants, rises in AI-exposed industries.
+\begin{prediction}[Employment below 500 employees]\label{pred:band}
+Employment at firms below 500 employees, classified by pre-shock size and including entrants, rises in AI-exposed industries.
 The offset ratio $\Omega$ in \cref{eq:offset-ratio} is the ratio of this response to the response in \cref{pred:incumbent}.
 \end{prediction}
 
@@ -31,11 +32,9 @@ The amount of external capital raised before a firm's first product falls in AI-
 \end{prediction}
 
 \begin{prediction}[Transatlantic differences]\label{pred:us-europe}
-The employment response in the band $\Bc$ is larger in the United States than in Europe, and the gap appears mainly in the post-entry growth of AI-exposed entrants rather than in entry rates.
+The employment response below 500 employees (250 in European data) is larger in the United States than in Europe, and the gap appears mainly in the post-entry growth of AI-exposed entrants rather than in entry rates.
 Europe's employer start-up rate is about half the US rate, its employment protection is about three times as strict, and its private AI investment is roughly a tenth of the US level; formal start-up registration costs, by contrast, are not systematically higher \citep{eurostat2026bdsize,oecd2020epl,oecd2024pmr,hai2026aiindex}.
-The AI Act raises fixed compliance costs for entrants in high-risk uses \citep{euaiact2024}.
-In a stylized European parameterization of the Monte Carlo (\cref{sec:disc-europe}), the probability of offset falls from 82\% to 70\%, mostly through thinner scale-up finance for AI-native entrants rather than through entry costs.
-The transatlantic difference remains smaller than the uncertainty in $\sigma_{\text{ai}}$ (\cref{tab:sensitivity}).
+\Cref{app:europe} reports a stylized European parameterization of the model.
 \end{prediction}
 
 \Cref{tab:signatures} maps each prediction to candidate US and European data sources.
@@ -44,53 +43,98 @@ The transatlantic difference remains smaller than the uncertainty in $\sigma_{\t
   \centering
   \caption{Empirical signatures and candidate data sources}
   \label{tab:signatures}
+  \small
   \begin{tabular}{lll}
     \toprule
     Prediction & United States & Europe \\
     \midrule
-    \ref{pred:incumbent}.\ Incumbent headcount & BDS; BTOS (Oct 2026: 2\% cut) & Community Survey on ICT \\
-    \ref{pred:entry}.\ Entry & BFS (2025: +62\% vs.\ 2019) & Eurostat business demography \\
+    \ref{pred:incumbent}.\ Incumbent headcount & BDS; BTOS AI suppl.\ (2025--26: 2\% cut) & Community Survey on ICT \\
+    \ref{pred:entry}.\ Entry & BFS (2025: +62.8\% vs.\ 2019) & Eurostat business demography \\
     \ref{pred:entrant-size}.\ Entrant size & BDS; BFS (WBA share 2026: 6.8\%) & OECD DynEmp \\
-    \ref{pred:band}.\ Band employment & Business Dynamics Statistics & Eurostat SBS \\
+    \ref{pred:band}.\ Employment below 500 & Business Dynamics Statistics & Eurostat SBS \\
     \ref{pred:capital}.\ Capital at entry & PitchBook, Crunchbase & Dealroom \\
     \ref{pred:us-europe}.\ Transatlantic gap & \multicolumn{2}{c}{Harmonized via OECD DynEmp} \\
     \bottomrule
   \end{tabular}
   \par\smallskip
-  \parbox{\linewidth}{\footnotesize BFS figures from \citet{bfs2026}: business applications in 2025 relative to 2019, and applications with planned wages (WBA) as a share of all applications, January--September 2026. BTOS figure from \citet{btos2026oct}.}
+  \parbox{\linewidth}{\footnotesize BFS figures from \citet{bfs2026}, November 12, 2026 vintage: business applications in 2025 relative to 2019 (unadjusted annual totals), and applications with planned wages (WBA) as a share of all applications, January--October 2026 (\texttt{data/bfs\_revision\_numbers.md}). BTOS figure from \citet{bonney2026}.}
 \end{table}
 
 \paragraph{AI exposure measure.}
-We measure AI exposure at the industry level using task-based scores from \citet{eloundou2024gpts} and \citet{felten2021occupational}, mapped to NAICS (US) and NACE (Europe) via crosswalks.
-\placeholder{Report the range of industry exposure scores once the crosswalk is computed. The simulation uses relative exposures of 0.5 (goods production), 0.8 (trade and transport), 1.2 (professional services), and 1.5 (information and finance), an ordering consistent with AI use rates by sector in BTOS and Eurostat.}
-To ensure the measure is predetermined, we use scores published before 2024 and verify that pre-shock trends in outcomes do not correlate with exposure; \cref{tab:bfs-tests} reports this check for business applications.
+This draft uses a coarse, ex ante classification rather than a continuous exposure score.
+In the business-application evidence, the exposed sectors are Information (NAICS 51) and Professional, scientific, and technical services (NAICS 54), which rank among the most exposed on the task-based measures of \citet{eloundou2024gpts} and \citet{felten2021occupational} and have among the highest AI use rates in BTOS.
+Finance and insurance (NAICS 52) is also highly exposed on those measures, and we report what happens when it is added.
+The simulation uses assumed relative exposures (\cref{tab:calibration}) whose ordering is consistent with AI use rates by sector in BTOS and Eurostat but which are not estimated from them.
+Mapping occupation-level scores to NAICS and NACE industries, which would give a continuous treatment intensity, is part of the ongoing work.
 
-\paragraph{Pre-trends and placebos in business applications.}
-A first test of \cref{pred:entry} uses the Census Business Formation Statistics \citep{bfs2026}: seasonally adjusted monthly applications for 19 NAICS sectors through September 2026.
-We estimate a two-way fixed-effects event study of log applications, with Information (NAICS 51) and Professional services (54) as the exposed group, the 15 sectors outside the exposed and placebo groups as controls, and 2022 as the base year.
-Before the shock the exposed sectors track the controls closely.
-Their differential trend over 2010--2022 is $-0.3\%$ per year (s.e.\ $1.0\%$), every 2015--2021 event coefficient lies between $-0.01$ and $0.09$ log points, and a fictitious shock dated 2016, estimated on pre-COVID data, yields $-0.001$ (s.e.\ $0.053$).
-Hence the post-shock gap is not the continuation of a pre-existing divergence.
-The response is also not immediate.
-The gap is $-0.03$ in 2023 and $0.00$ in 2024; it opens in March 2025 and widens almost monotonically to $0.34$ log points (about $+41\%$) by September 2026 (\cref{fig:bfs-gap}).
-The 2026 coefficient of $0.29$ (s.e.\ $0.06$) ranks 10th of the 171 sector pairs that could have been labelled ``exposed'' (one-sided permutation $p = 0.06$), whereas the same statistic for 2015--2021 never ranks above 40th.
-Construction, a low-exposure sector, is a clean placebo: its gap stays within $\pm 0.01$ of zero in every year from 2023 to 2026.
-Retail is not a clean placebo, because it carries a $+3.8\%$ annual pre-trend from the e-commerce wave and erratic single-month spikes after 2024; we report it in \cref{tab:bfs-tests} for transparency.
-Two qualifications follow from the same data.
-First, the divergence is confined to applications with a low propensity to hire: for high-propensity applications the 2026 coefficient is $0.12$ (s.e.\ $0.12$) and ranks 48th, and Information alone is negative.
-This agrees with \cref{pred:entrant-size} but does not yet show employer entry.
-Second, because 2023--2024 show no effect, a pooled 2023--2026 difference-in-differences is small and insignificant ($0.06$, permutation $p = 0.32$); dating the effective shock to 2025, when capable coding and agent tools diffused, fits the data, but that date was chosen after the data were observed.
-With two exposed sectors, conventional clustered errors over-reject \citep{conley2011inference}, so we treat the permutation ranks as the primary inference.
-Data, code and full tables are in \texttt{data/bfs\_causal\_analysis.md} and \texttt{scripts/bfs\_causal\_analysis.py}.
+\subsection{Business applications: descriptive evidence}\label{sec:sig-bfs}
+
+A first look at \cref{pred:entry} uses the Census Business Formation Statistics \citep{bfs2026}, November 12, 2026 vintage: seasonally adjusted monthly applications for 19 NAICS sectors through October 2026.
+This vintage adds October 2026 and revises earlier months; for example, applications in January--September 2026 are now 15.0\% above the same months of 2025, against 15.3\% in the previous vintage.
+The annual outcome is the log of mean monthly applications (2026 covers January--October).
+We estimate a two-way fixed-effects event study with Information and Professional services as the exposed group, the 15 sectors outside the exposed and placebo groups as controls, and 2022 as the base year, and we compare the exposed group's gap with that of every other pair of sectors.
+With two exposed sectors, conventional clustered errors over-reject \citep{conley2011inference}, so we treat the permutation ranks as the primary summary.
+None of what follows identifies an effect of AI; it describes when and where applications diverged.
+
+\paragraph{Pre-trends and timing.}
+Before 2023 the exposed sectors track the controls closely.
+Their differential trend over 2010--2022 is $-0.2\%$ per year (s.e.\ $1.0\%$), every 2015--2021 event coefficient lies between $0.01$ and $0.08$ log points, and a fictitious shock dated 2016, estimated on pre-COVID data, yields $-0.001$ (s.e.\ $0.053$).
+The gap is $-0.03$ in 2023 and $0.00$ in 2024.
+In the monthly series it stays above $0.05$ log points from March 2025 onward and widens to $0.34$ by September 2026 and $0.44$ in October 2026 (\cref{fig:bfs-gap}); October is the newest month and the most likely to be revised.
+The 2026 event coefficient is $0.30$ (s.e.\ $0.06$).
+Measured against all 17 other sectors, the 2026 gap is $0.288$ log points and ranks 10th of the 171 sector pairs that could have been labelled exposed (one-sided permutation $p = 0.058$), whereas the same statistic for 2015--2021 never ranks above 41st.
+A pooled 2023--2026 difference-in-differences is small ($0.07$, s.e.\ $0.06$; the corresponding permutation statistic ranks 50th, $p = 0.29$), because 2023 and 2024 show nothing.
+Dating the divergence to 2025, when capable coding and agent tools diffused, fits the data, but that date was chosen after the data were observed.
+
+\paragraph{What drives the permutation rank.}
+All nine sector pairs with a larger 2026 gap than Information plus Professional services include Management of companies (NAICS 55), whose applications more than doubled between 2022 and 2026 (\texttt{data/bfs\_sector\_league\_BA\_BA.csv}).
+The rank of 10 is therefore a statement about one small sector as much as about the exposed pair: if NAICS 55 is dropped from the comparison set, the exposed pair ranks first of 153 pairs ($p = 0.007$).
+Because that exclusion is chosen after seeing the data, we do not use it as the primary result.
+
+\paragraph{Which sectors count as exposed.}
+Finance and insurance is highly exposed on task-based measures, but its applications fell relative to other sectors: its 2026 gap relative to 2022, against the 14 controls that exclude the placebo and exposed sectors, is $-0.078$ (s.e.\ $0.062$), and $-0.090$ when every year uses January--October only.
+Adding Finance to the exposed group roughly halves the estimate.
+The 2026 gap of Information, Finance, and Professional services against all other sectors is $0.160$, 0.55 times the two-sector gap, and ranks 121st of the 969 possible sector triples ($p = 0.125$); the event-study coefficient falls to $0.17$ (s.e.\ $0.13$).
+The divergence is therefore a feature of two sectors, not of AI exposure as such.
+
+\paragraph{Weighting.}
+The group gap is an unweighted mean of the two sectors' log applications, so Information and Professional services count equally although Professional services accounted for 86\% of the pair's applications in 2022.
+Weighting by applications instead (the log of the pair's summed applications against the log of the controls' summed applications) gives a 2026 gap of $0.32$ against $0.30$ unweighted, so equal weighting does not drive the result.
+
+\paragraph{Who is applying.}
+The divergence is concentrated in applications with a low propensity to hire.
+For high-propensity applications the 2026 coefficient is $0.11$ (s.e.\ $0.12$), ranking 46th of 171, and for Information alone it is $0.005$ (s.e.\ $0.09$).
+Across all sectors, applications in January--October 2026 were 10.9\% above the same months of 2025, high-propensity applications 3.6\% above, and applications with planned wages 16.5\% below; planned-wage applications were 6.8\% of all applications (4.7\% in Information) (\texttt{data/bfs\_revision\_numbers.md}).
+This composition fits \cref{pred:entrant-size}, more but smaller entrants.
+It fits a rival reading equally well: workers displaced from, or not hired into, exposed occupations registering as contractors or sole proprietors.
+Falling employment of young workers in exposed occupations \citep{brynjolfsson2025canaries} and exposed startups cutting junior jobs \citep{gupta2026generative} are consistent with that reading, and business applications cannot separate the two.
+They also cannot show employer entry.
+
+\paragraph{Placebos and the 2020 jump.}
+Construction, a low-exposure sector, stays close to zero after 2022 (event coefficients between $-0.04$ and $0.00$ in 2023--2026).
+Retail is not a clean placebo.
+It carries a $+3.8\%$ annual pre-trend from the e-commerce wave, and its event coefficients are $0.24$ in 2025 and $0.16$ (s.e.\ $0.06$) in 2026, more than half the exposed group's 2026 coefficient, in a sector where AI exposure is low.
+Large sector-specific movements in applications are therefore not rare.
+The exposed-sector gap itself jumped in 2020: the annual coefficient is $0.08$ and the permutation gap ranks 41st of 171, and the monthly gap peaked at $0.16$ in April 2020 before reverting, during the pandemic surge in business formation \citep{decker2023surging}.
+The 2026 gap is larger and has persisted longer, but the 2020 episode shows that a gap of this kind can open for reasons unrelated to AI.
+
+\paragraph{Relation to firm-level evidence.}
+\citet{bena2026prompted} find about 20\% more startups in AI-exposed industries, with smaller entrants but net job and wage growth among new firms.
+Our application data agree on the first two points (more formation in exposed sectors, mostly at the low-propensity margin) but cannot speak to the third.
+\citet{gupta2026generative} find that exposed startups cut junior jobs while new firm formation offset the contraction of incumbent startups, leaving aggregate startup employment unchanged, which is closer to the employment-neutral reallocation of the regime map's middle region than to either pure displacement or strong offset.
+\citet{dinlersoz2024starting} study AI among US startups in Census data, which is the natural route to linking applications to later employer outcomes.
+None of these studies, nor ours, measures labor demand at firms that were large before the shock, which is the denominator of $\Omega$.
+Data, code, and tables are in \texttt{scripts/bfs\_causal\_analysis.py} (with its CSV outputs in \texttt{data/}) and \texttt{scripts/bfs\_revision\_numbers.py} (\texttt{data/bfs\_revision\_numbers.md}).
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.85\linewidth]{bfs_monthly_gap}
   \caption{Business applications in AI-exposed sectors relative to other sectors.
     Log gap between seasonally adjusted monthly applications in each group and the mean of the 15 other NAICS sectors, normalized to the 2022 mean.
-    AI-exposed is the mean of Information (51) and Professional services (54).
+    AI-exposed is the unweighted mean of Information (51) and Professional services (54).
     Dashed line: December 2022.
-    \footnotesize\textit{Source: Census BFS, January 2019--September 2026; our calculations.}}
+    The exposed-sector gap also rose in 2020 (peak April 2020) and reverted.
+    \footnotesize\textit{Source: Census BFS, November 12, 2026 vintage, January 2019--October 2026; \texttt{scripts/bfs\_causal\_analysis.py}.}}
   \label{fig:bfs-gap}
 \end{figure}
 
@@ -98,23 +142,27 @@ Data, code and full tables are in \texttt{data/bfs\_causal\_analysis.md} and \te
   \centering
   \caption{Pre-trend, placebo and permutation tests: log business applications}
   \label{tab:bfs-tests}
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
   \begin{tabular}{lcccc}
     \toprule
      & Pre-trend & Fake shock & Event coef. & Rank of 2026 \\
-     & 2010--22 (\%/yr) & 2016 & 2026 & among 171 pairs \\
+     & 2010--22 (\%/yr) & 2016 & 2026 & gap \\
     \midrule
     \multicolumn{5}{l}{\textit{All applications}} \\
-    Information + Professional (51, 54) & $-0.26$ \, (1.0) & $-0.001$ \, (0.053) & $0.292$ \, (0.059) & 10 \\
-    Placebo: Construction (23)          & $2.26$           & $0.189$              & $0.005$              & -- \\
-    Placebo: Retail (44--45)            & $3.81$           & $0.093$              & $0.187$              & -- \\
+    Info.\ + Prof.\ (51, 54) & $-0.23$ \, (1.02) & $-0.001$ \, (0.053) & $0.296$ \, (0.058) & 10 of 171 \\
+    Info.\ + Finance + Prof.\ (51, 52, 54) & $-0.04$ \, (1.06) & $0.040$ \, (0.062) & $0.168$ \, (0.129) & 121 of 969 \\
+    Placebo: Construction (23)          & $2.30$           & $0.189$              & $-0.013$              & -- \\
+    Placebo: Retail (44--45)            & $3.84$           & $0.094$              & $0.160$              & -- \\
     \multicolumn{5}{l}{\textit{High-propensity applications}} \\
-    Information + Professional (51, 54) & $-0.21$ \, (1.0) & $0.020$ \, (0.058)  & $0.116$ \, (0.124)  & 48 \\
+    Info.\ + Prof.\ (51, 54) & $-0.18$ \, (1.02) & $0.019$ \, (0.058)  & $0.105$ \, (0.120)  & 46 of 171 \\
     \bottomrule
   \end{tabular}
   \par\smallskip
-  \parbox{\linewidth}{\footnotesize Two-way (sector, year) fixed effects; controls are the 15 other NAICS sectors; base year 2022; 2026 is January--September.
-    Standard errors clustered by sector in parentheses (reported for the two-sector group only).
+  \parbox{\linewidth}{\footnotesize Two-way (sector, year) fixed effects; controls are the 15 NAICS sectors outside the exposed and placebo groups (14 when Finance is in the exposed group); base year 2022; 2026 is January--October.
+    Standard errors clustered by sector in parentheses (reported for the exposed groups only).
     Fake shock: 2016--2019 vs.\ 2010--2015.
-    Rank: position of the group's 2026 gap (relative to 2022, against the other 17 sectors) among all $\binom{19}{2} = 171$ sector pairs, 1 = largest.
-    \textit{Source: Census BFS; our calculations.}}
+    Rank: position of the group's 2026 gap relative to 2022, measured against all other sectors, among all sector pairs ($\binom{19}{2} = 171$) or triples ($\binom{19}{3} = 969$), 1 = largest.
+    All nine pairs ranked above the exposed pair include Management of companies (55).
+    \textit{Source: Census BFS, November 12, 2026 vintage; \texttt{data/bfs\_causal\_results.csv}, \texttt{data/bfs\_perm\_by\_year\_BA\_*.csv}, \texttt{data/bfs\_revision\_numbers.md}.}}
 \end{table}

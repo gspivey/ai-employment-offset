@@ -22,25 +22,27 @@
 % ---- Theorem-like environments -----------------------------------------------
 \theoremstyle{plain}
 \newtheorem{proposition}{Proposition}
+\newtheorem{result}{Result}
 \theoremstyle{definition}
 \newtheorem{assumption}{Assumption}
 \newtheorem{definition}{Definition}
 \newtheorem{prediction}{Prediction}
 \crefname{assumption}{Assumption}{Assumptions}
 \crefname{prediction}{Prediction}{Predictions}
+\crefname{result}{Result}{Results}
 
 % ---- Macros ------------------------------------------------------------------
 % Visible marker for text the author still has to write; remove before submission.
 \newcommand{\placeholder}[1]{\textcolor{gray}{[\textit{#1}]}}
-% Size classes: L = large incumbents, B = the 5--4,999 band, S = fewer than 5 employees.
+% Size classes (as in the simulation): L = 500+ employees, B = 20--499, S = fewer than 20.
 \newcommand{\Lc}{\mathcal{L}}
 \newcommand{\Bc}{\mathcal{B}}
 \newcommand{\Sc}{\mathcal{S}}
 
 % ---- Front matter ------------------------------------------------------------
-\title{Fewer Giants, More Firms?\\Artificial Intelligence, Entry Costs, and the Firm Size Distribution\thanks{\placeholder{Acknowledgments, funding, data access, and AI-use disclosure statement.}}}
+\title{Fewer Giants, More Firms?\\Artificial Intelligence, Entry Costs, and the Firm Size Distribution\thanks{The views expressed are the author's own and do not represent those of any employer. Any errors are the author's own. The data, code, and replication files are available at \url{https://github.com/gspivey/ai-employment-offset}. Large-language-model tools were used to assist with coding and editing; all economic content, modelling choices, and interpretations are the author's own.}}
 \author{Gerard Spivey\\\href{mailto:gs@gspivey.com}{gs@gspivey.com}}
-\date{\placeholder{Preliminary draft} --- \today}
+\date{Preliminary draft --- \today}
 
 \begin{document}
 
@@ -48,17 +50,12 @@
 
 \begin{abstract}
 \noindent
-Artificial intelligence (AI) raises the productivity of incumbent firms, and a prominent concern is that large firms will use these gains to reduce headcount.
-Less attention has been paid to a second margin of adjustment: whether AI also lowers the cost of starting and scaling a new firm.
-We argue that the closest historical precedent is cloud computing, which converted the fixed cost of computing infrastructure into a variable cost and thereby reduced the capital required to launch a firm.
-This paper asks whether AI-induced firm formation can offset the employment that large incumbents shed.
-We develop a model of firm dynamics with endogenous entry and exit in which the AI shock has two components: a labor-saving change in the technology of incumbents and a reduction in the fixed costs of entry and operation.
-We discipline the entry-cost component using the cloud-computing era (2006--2020), calibrate the model to US business-dynamism moments, and use Monte Carlo simulation to characterize the conditions under which job creation at small and mid-sized firms and entrants offsets displacement at large incumbents.
-The cloud era is a cautionary precedent: lower computing costs coincided with rising employment concentration and a falling startup rate, a pattern the model reproduces only when a labor-complementary technology is combined with entry headwinds.
-Across 2,000 Monte Carlo draws, the probability that AI raises net employment is 81.7\%, but this headline is conditional: the labor-AI substitution elasticity explains 71\% of the variance in employment outcomes, while entry-cost reduction explains only 3\%.
-Below a displacement threshold ($\sigma_{\text{ai}} < 2.78$), offset is nearly universal (99.8\%); above it, offset depends on whether AI-native entrants are substantially more productive.
-We derive empirical signatures that distinguish offsetting entry from pure displacement and map them to administrative business data.
-Early survey evidence suggests AI is currently labor-complementary at adopting firms, but AI-native firms are markedly employment-light, and business applications with planned wages are falling even as total applications reach record highs.
+Can firm formation induced by artificial intelligence (AI) offset the labor that large incumbents shed as they adopt it?
+We study a partial-equilibrium firm-dynamics model in which AI is both a labor-saving input at adopting firms and a cut in the cost of entry.
+Wages are fixed, so every outcome is a change in labor demand, not in equilibrium employment, and the model is not calibrated.
+Whether an adopter hires or sheds workers is the Hicks--Marshall comparison of the labor--AI substitution elasticity with the firm's scale elasticity; with span-of-control returns $\alpha = 0.64$ the threshold is $2.78$, but it rises steeply with $\alpha$.
+Holding the cost saving from AI fixed as the elasticity varies, the net labor-demand effect declines monotonically in the elasticity: offset fails when substitution is high and AI-native entrants are no more productive than earlier entrants, and cheaper entry matters little.
+In Census business applications, two highly AI-exposed sectors pulled away from other sectors from March 2025, by $0.29$ log points in 2026, mostly among applicants unlikely to hire; the estimate is sensitive to which sectors count as exposed.
 \end{abstract}
 
 \medskip
@@ -80,5 +77,11 @@ Early survey evidence suggests AI is currently labor-complementary at adopting f
 % ---- References --------------------------------------------------------------
 \bibliographystyle{plainnat}
 \bibliography{references}
+
+% ---- Appendices --------------------------------------------------------------
+\clearpage
+\appendix
+\input{sections/A1-company-evidence}
+\input{sections/A2-europe}
 
 \end{document}

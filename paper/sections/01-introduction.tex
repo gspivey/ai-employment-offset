@@ -6,56 +6,57 @@ If these gains are labor-saving at the firm level, the first-order prediction is
 The concern is sharpest for large firms, which have the data, capital, and organizational capacity to adopt early: in the European Union in 2025, 55\% of enterprises with 250 or more employees used AI, against 17\% of those with 10 to 49 employees \citep{eurostat2026isoc}.
 This paper is about the second-order response.
 A technology that makes existing firms more productive may also make new firms cheaper to create.
-We ask whether, when AI reduces headcount at large incumbents, it also lowers the barriers to firm formation enough that employment in new small and mid-sized firms offsets the displacement.
+We ask under what conditions, when AI reduces labor demand at large incumbents, it also lowers the barriers to firm formation enough that labor demand at smaller firms and entrants offsets the loss.
 
 % ---- P2. Why it matters ----------------------------------------------------
 The answer matters for how economists and policymakers read the labor-market consequences of AI.
 Most existing assessments measure the exposure of occupations and tasks \citep{eloundou2024gpts,acemoglu2025simple}, implicitly holding the set of firms fixed.
 Yet net job creation in the United States is driven disproportionately by young firms rather than by small firms as such \citep{haltiwanger2013who}, and the long decline in business dynamism has been linked to slower reallocation and weaker productivity growth \citep{decker2014role,decker2020changing}.
 If AI moves the entry margin, changes in the number and size of firms could rival the within-firm displacement that task-based accounts emphasize.
-The question is equally pressing in Europe, where firm size distributions, entry costs, and labor-market institutions differ from those in the United States \citep{bartelsman2013cross}, and where a new regulatory framework for AI is being phased in \citep{euaiact2024}.
 
 % ---- P3. Why it is hard ----------------------------------------------------
 Answering the question is hard for three reasons.
 First, AI is still diffusing, so the post-shock firm size distribution is not yet observed and any direct test is necessarily partial.
-% [claim] speed asymmetry is plausible but should be supported (e.g. entrant scale-up horizons in BDS).
-Second, the two channels operate at different speeds: incumbents can cut headcount within a budget cycle, whereas the entry, survival, and scale-up of new firms unfold over years, so short-run data will tend to overstate net displacement.
-Third, the natural historical comparison is not clean: the cloud era coincided with a secular decline in the aggregate US startup rate \citep{decker2016declining,akcigit2021ten}, so any entry effect of cloud computing must be identified within exposed sectors and against a falling baseline rather than read off aggregate series.
-A naive before-and-after comparison of aggregate employment therefore conflates the two channels and confounds both with unrelated trends.
+Second, the two channels operate at different speeds: incumbents can cut headcount within a budget cycle, whereas the entry, survival, and scale-up of new firms unfold over years.
+Third, the natural historical comparison is not clean: the cloud era coincided with a secular decline in the aggregate US startup rate \citep{decker2016declining,akcigit2021ten}, much of it plausibly demographic \citep{karahan2024demographic,hopenhayn2022population}, so any entry effect of cloud computing would have to be identified within exposed sectors and against a falling baseline.
 
-% ---- P4. The gap and how this paper differs ---------------------------------
-Prior work has studied each channel largely in isolation.
-A large literature on automation studies displacement and reinstatement of labor within a given set of firms or industries \citep{autor2003skill,autor2015why,acemoglu2018race}, and work on superstar firms documents rising concentration alongside a falling labor share \citep{autor2020fall}.
-Research on information technology shows that its effects depend on how firms are organized \citep{bloom2012americans,bloom2014distinct}, and recent evidence links AI investment to firm growth and product innovation \citep{babina2024artificial}.
-Separately, research on cloud computing shows that cheaper experimentation changed how startups are financed \citep{ewens2018cost} and affected the survival and performance of young establishments \citep{jin2017economies}.
-Canonical models of firm dynamics connect entry costs to the firm size distribution \citep{hopenhayn1992entry,luttmer2007selection}.
-% [claim] "to our knowledge" requires a completed literature search before submission.
-To our knowledge, these models have not been used to ask whether a shock that combines labor-saving technical change with lower entry costs raises or lowers aggregate employment.
-We bring these strands together and use cloud computing as a disciplined analogue for the entry-cost component of the AI shock.
+% ---- P4. What we do and what we find ------------------------------------------
+We study the question in a partial-equilibrium model of firm dynamics with entry and exit (\cref{sec:theory}), in which the AI shock lowers adopters' unit costs through a CES bundle of labor and AI services, lowers the entry cost, and may make entrants more productive (\cref{sec:ai-model}).
+Two features of the exercise frame every result.
+Wages are fixed and product demand is not modeled, so outcomes are changes in \emph{labor demand} at a constant wage, not equilibrium employment.
+And the model is not calibrated: its parameters are illustrative defaults, and \cref{sec:sim-parameters} reports how far its pre-AI moments are from US data.
 
-% ---- P5. What we do, what we find, and the limits --------------------------
-We proceed in four steps.
-We first set out a model of firm dynamics with endogenous entry and exit (\cref{sec:theory}).
-We then use the cloud era of 2006--2020 to ask which parameter configurations reproduce what happened: lower computing costs coincided with rising employment concentration and a falling startup rate, a pattern the model matches only when a labor-complementary technology is combined with entry headwinds (\cref{sec:cloud}).
-Next, we formalize the AI shock as a combination of displacement at incumbents and lower fixed costs of entry and operation (\cref{sec:ai-model}), and we calibrate the model and simulate it by Monte Carlo (\cref{sec:simulation}).
-We find that the probability that AI raises net employment is 81.7\%, but the result is conditional: whether AI is labor-complementary ($\sigma_{\text{ai}} < 2.78$) or labor-displacing explains 71\% of the variance, while entry-cost reduction---the mechanism most analogous to cloud computing---explains only 3\%.
-Below the displacement threshold, offset is nearly universal; above it, offset depends on whether AI-native entrants are substantially more productive than they would have been absent AI.
-Finally, we derive empirical signatures that can be tested as AI diffuses (\cref{sec:signatures}).
-Our analysis has clear limits: the analogy to cloud computing is imperfect, and because AI can substitute for labor at entrants as well as at incumbents, more firms need not mean more jobs.
-In the discussion (\cref{sec:discussion}) we distinguish AI infrastructure providers (labs, hyperscalers) from AI application companies and document that the leading application firms are far more employment-light than cloud-era software firms: Cursor generates more than twenty times the revenue per employee of cloud-era SaaS comparators.
+We obtain three results.
+First, at a single firm the sign of the headcount response is the textbook Hicks--Marshall comparison of substitution and scale effects \citep{hamermesh1993labor}: AI raises an adopter's labor demand if and only if the labor--AI elasticity of substitution $\sigma_{\text{ai}}$ is below the scale elasticity (\cref{prop:threshold}).
+Under span-of-control returns $\alpha$ the scale elasticity is $1/(1-\alpha)$, which is $2.78$ at $\alpha = 0.64$ but $6.67$ at $\alpha = 0.85$, a value closer to estimates of returns to scale at the establishment level \citep{atkeson2005modeling,restuccia2008policy}; the threshold, and hence the regime, is therefore only as well pinned down as $\alpha$ (\cref{tab:alpha-threshold}).
+Second, in the original specification $\sigma_{\text{ai}}$ was confounded with the size of the shock: with the price of AI held fixed, a low elasticity is also a very large cost reduction.
+Once the cost saving at a reference point is held fixed as $\sigma_{\text{ai}}$ varies \citep{klump2000growth,leonledesma2010identifying}, the net labor-demand effect declines monotonically in $\sigma_{\text{ai}}$, and offset fails at high substitution unless AI-native entrants are substantially more productive (\cref{fig:regime-map}).
+The flat ``plateau'' at high $\sigma_{\text{ai}}$ in earlier drafts was an artifact of the fixed AI price.
+Across specifications, cutting the entry cost moves aggregate labor demand little; it changes where employment sits more than how much of it there is.
+Third, in Census business applications, Information and Professional services pulled away from other sectors from March 2025, with no pre-trend, mostly among applications with a low propensity to hire (\cref{sec:signatures}).
+That pattern is consistent with more but smaller entrants, and also with displaced workers registering as contractors; it is sensitive to which sectors are classed as exposed, and we do not give it a causal reading.
 
-\paragraph{Contributions.}
-This paper makes four contributions.
-\begin{itemize}
-  \item \textbf{A two-channel model of the AI shock.}
-  We embed labor-saving technical change at incumbents and lower fixed costs of entry and operation in a single model of firm dynamics, so that displacement and firm formation are determined jointly rather than studied in isolation.
-  \item \textbf{Cloud computing as an empirical analogue.}
-  We use the 2006--2020 cloud era in the United States and Europe to discipline the entry-cost channel, accounting for the concurrent decline in business dynamism.
-  \item \textbf{Quantitative conditions for offset.}
-  We characterize, by calibration and Monte Carlo simulation, the conditions under which employment among firms with 5 to 4,999 employees offsets displacement at large incumbents.
-  \item \textbf{Testable empirical signatures.}
-  We derive predictions that distinguish offsetting entry from pure displacement and map each one to existing US and European administrative data.
-\end{itemize}
+The cloud-computing era (2006--2020) serves as motivation rather than as a source of discipline (\cref{sec:cloud}).
+Cheaper computing coincided with rising employment concentration and a falling startup rate.
+The model's best-fitting configuration for those facts \emph{raises} the employer entry cost by 20\%, which reverses the sign of the entry-cost cut the cloud analogy was meant to represent, so we do not use the replication to inform the AI priors.
+In the discussion (\cref{sec:discussion}) we note that leading AI application firms are far more employment-light than cloud-era software firms, consistent with systematic evidence that AI-native startups are smaller \citep{kim2026ainative}.
+
+\subsection{Related literature}\label{sec:intro-literature}
+
+A large literature studies displacement and reinstatement of labor within a given set of firms or industries \citep{autor2003skill,autor2015why,acemoglu2018race}, and work on superstar firms documents rising concentration alongside a falling labor share \citep{autor2020fall}.
+Firm-level evidence on automation shows that adopters expand while competitors shed workers, so that business stealing, rather than the scale effect alone, accounts for much of adopters' growth \citep{acemoglu2020competing,koch2021robots}.
+Our model has no product-market interaction between firms, so it captures the first of these margins and not the second.
+\citet{hubmer2021typical} show that a fixed cost of automation, paid mostly by large firms, can account for the joint dynamics of firm size, labor shares, and capital--labor substitution; our size-selective adoption cost plays the same role.
+Macroeconomic models in which intangible or information technologies favor large firms \citep{deridder2024market,aghion2023falling} predict that cheaper technology can raise concentration and depress entry, which is the cloud-era pattern of \cref{sec:cloud}.
+
+Canonical models of firm dynamics connect entry costs to the firm size distribution \citep{hopenhayn1992entry,luttmer2007selection}, and the decline in US startups has been traced to demographics and population growth \citep{karahan2024demographic,hopenhayn2022population}.
+On cloud computing, \citet{ewens2018cost} show that cheaper experimentation changed how startups are financed, \citet{jin2017economies} relate cloud adoption to young establishments' survival, and \citet{destefano2023cloud} find that cloud adoption raised employment at young firms.
+Firm-dynamics models have been used much less to ask whether a shock that combines labor-saving technical change with lower entry costs raises or lowers aggregate labor demand; we are not aware of one that does so for AI, which is the gap this paper addresses.
+
+Evidence on AI and labor is accumulating quickly.
+Administrative data from Denmark show small effects of chatbots on earnings and hours so far \citep{humlum2025large}, while US payroll data show falling employment of young workers in the most exposed occupations \citep{brynjolfsson2025canaries}.
+On entry, \citet{dinlersoz2024starting} study AI among US startups, \citet{decker2023surging} analyze the pandemic surge in business formation that precedes our sample's post-period, \citet{bena2026prompted} find about 20\% more startups in AI-exposed industries, with smaller entrants and net job and wage growth among new firms, and \citet{gupta2026generative} find that exposed startups cut junior jobs while new firm formation offset the contraction of incumbent startups, leaving aggregate startup employment unchanged.
+\Cref{sec:signatures} positions our business-application evidence against these two studies.
 
 The remainder of the paper is organized as follows.
-\Cref{sec:theory} presents the framework, \cref{sec:cloud} studies the cloud era, \cref{sec:ai-model} formalizes the AI shock, \cref{sec:simulation} reports the calibration and simulations, \cref{sec:signatures} states the empirical signatures, \cref{sec:discussion} discusses limitations and policy, and \cref{sec:conclusion} concludes.
+\Cref{sec:theory} presents the framework, \cref{sec:cloud} reviews the cloud era as motivation, \cref{sec:ai-model} formalizes the AI shock, \cref{sec:simulation} reports the parameters, the normalization, and the simulations, \cref{sec:signatures} states the empirical signatures and the business-application evidence, \cref{sec:discussion} discusses limitations, ongoing work, and policy, and \cref{sec:conclusion} concludes.
