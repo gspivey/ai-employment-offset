@@ -25,12 +25,12 @@ Compiled 2026-10-29. Tags as in `cloud_era_baseline.md`: **[C]** computed by us 
 
 Reading:
 - The EU employer birth rate is roughly **half** the US startup rate (4.8% vs 9.1%; ratio 0.53). The EU all-enterprise birth rate (10.4%) is above the US employer rate only because >83% of EU births have no employees.
-- In 2022–2024, the first two years of the generative-AI wave, **EU employer births in ICT fell** (J: 7.66% → 6.36%; J62: 8.89% → 6.97%), and the zero-employee share of births rose. US business applications in Information rose sharply over the same period (BFS; see `ai_adoption_evidence.md` §3.1). The EU pattern matches the US "employment-light" signature (more solo/zero-employee formation), without the US surge in total formation.
+- In 2022–2024, the first two years of the generative-AI wave, **EU employer births in ICT fell** (J: 7.66% → 6.36%; J62: 8.89% → 6.97%), and the zero-employee share of births rose. US business applications in Information rose sharply over the same period (Census BFS). The EU pattern matches the US "employment-light" signature (more solo/zero-employee formation), without the US surge in total formation.
 - Employment share of newborn firms: EU 2.2–2.4% (persons employed, includes proprietors) vs US 1.8–1.9% (employees only). Not comparable in level.
 
 Reproduce: `GET https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/bd_size?format=JSON&geo=EU27_2020&lang=EN&sinceTimePeriod=2021`; indicators `ENT_BRTHR_PC`, `ENT_BRTH_NR`, `ENT_NR`, `EMP_BRTHR_PC`.
 
-## 2. AI adoption by size [C] (from `ai_adoption_evidence.md` §1.3)
+## 2. AI adoption by size [C]
 
 EU (10+ persons employed, `isoc_eb_ai`), 2025: 17.0% (10–49), 30.4% (50–249), 55.0% (250+); ratio large/small 3.2 (4.6 in 2021). US BTOS: ratio 250+/1–4 about 1.74. EU barriers among firms that considered AI: lack of expertise 70.9%, **unclear legal consequences 52.5%**, data protection 48.8%.
 
@@ -73,11 +73,11 @@ Reproduce: OECD SDMX `OECD.ECO.GCRD,DSD_PMR@DF_PMR/all?startPeriod=2023`.
 
 ## 5. AI venture funding
 
-- Stanford AI Index 2026 (covers 2025): US private AI investment $285.9B; Europe $20.9B (ratio ≈ 13.7). [P, via `ai_era_startups_2023_2026.md` §2.3]
+- Stanford AI Index 2026 (covers 2025): US private AI investment $285.9B; Europe $20.9B (ratio ≈ 13.7). [P]
 - Dealroom (2025): >$21B into European AI start-ups (+58% y/y). Europe invests about 3× less than the US at growth stage and about 12× less at late stage ($12B vs $141B); more than half of European growth-stage AI capital comes from foreign, mostly US, investors. [S: Prosus "The Startup Paradox"; Trending Topics]
 - Crunchbase (2025): Europe $17.5B (≈8% of global AI funding) vs US $159B of $211B global (ratio ≈ 9). [S: implicator.ai]
 - Range used in the paper: US/Europe ≈ 9–14×.
-- Lovable (Stockholm) and Mistral (Paris; Series D €3B at €21B post, Sep 2026) are the European outliers (`ai_era_startups_2023_2026.md`).
+- Lovable (Stockholm) and Mistral (Paris; Series D €3B at €21B post, Sep 2026) are the European outliers.
 
 ## 6. AI Act (Regulation (EU) 2024/1689) and the Digital Omnibus (Regulation (EU) 2026/1744)
 

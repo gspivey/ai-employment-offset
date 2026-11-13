@@ -1,6 +1,6 @@
 # Cloud-Era Empirical Baseline (2006–2020)
 
-Research notes for the economics paper (T4). The question: when cloud infrastructure (AWS 2006, Google 2008, Azure 2010) and the SaaS stack cut the fixed cost of starting a firm, what happened to firm formation and to the firm-size distribution of employment? The answers give an empirical prior for the AI-era argument.
+Research notes behind the paper's cloud-era motivation (Section 3) and the data column of the model-versus-data table. The question: when cloud infrastructure (AWS 2006, Google 2008, Azure 2010) and the SaaS stack cut the fixed cost of starting a firm, what happened to firm formation and to the firm-size distribution of employment? The answers give an empirical prior for the AI-era argument.
 
 Compiled 2026-10-29. Full source list with URLs/DOIs: `data/sources.md`.
 

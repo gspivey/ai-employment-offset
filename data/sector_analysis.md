@@ -208,7 +208,6 @@ Standard errors on the model startup gaps are 0.01–0.02 pp.
 ## 8. Reproduction
 
 ```bash
-cd ~/.kiro/crew/workspace-member-playecon
 PYTHONPATH=. .venv/bin/python -m model.sector_analysis   # ~6 min on 6 workers; writes data/sector_analysis_{results,totals}.csv and _tables.md
 .venv/bin/python -m pytest tests/test_sector_analysis.py -q
 ```

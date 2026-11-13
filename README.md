@@ -14,7 +14,7 @@ holds the model, data and LaTeX sources for three related outputs, each making a
 | Output | Claim | Status | Source | PDF |
 |---|---|---|---|---|
 | **Short model note** | An analytical condition for when entry offsets displacement at adopters, and why entrant quality outweighs entry cost | Draft | `note/note.tex` | [`note/note.pdf`](note/note.pdf) |
-| **Quantitative macro paper** | Magnitudes for employment, wages and the labor share in an equilibrium model whose entry channel is disciplined by data | In revision (see below) | `paper/` | [`paper/main.pdf`](paper/main.pdf) |
+| **Quantitative macro paper** | Magnitudes for employment, wages and the labor share in an equilibrium model whose entry channel is disciplined by data | In revision (see Current status below) | `paper/` | [`paper/main.pdf`](paper/main.pdf) |
 | **Plain-language summary** | Offset is possible, but only under conditions we can name and watch | Mirrors the blog post | `layman-summary/summary.tex` | [`layman-summary/summary.pdf`](layman-summary/summary.pdf) |
 
 **What the model shows.** New firms make up for jobs lost at adopting incumbents under some conditions and not
@@ -34,18 +34,15 @@ evidence is descriptive. The October 2026 draft of the paper is superseded and s
 
 ## Current status
 
-In short:
-
 | Area | Status |
 |---|---|
-| sigma confounded with shock size | **Done.** Normalized CES (`ces_normalization="cost_saving"` in `model/parameters.py`); re-run regime map (`scripts/regime_map.py`) and Monte Carlo (`scripts/monte_carlo_normalized.py`). The high-sigma "plateau" in the original runs was an artifact of the normalization. |
-| Threshold depends on alpha | **Done in text and the note.** Stated for a general scale elasticity; alpha table; the note's boundary figure varies alpha. Not yet in the uncertainty analysis with recalibration. |
-| Probability language for prior-predictive shares | **Done.** Results presented as a regime map. |
-| No equilibrium (fixed wage, no demand curve) | **Not done.** Stated as a limitation; next workstream. |
-| Model not calibrated | **Partly.** Claims removed, model-versus-data table added; simulated method of moments not done. |
-| Cloud analogue does not discipline the AI priors | **Partly.** Demoted to motivation; the cloud estimation is not done. |
-| Thin empirics; newer entry papers | **Partly.** Updated to the November 12, 2026 Census vintage, positioned against the two 2026 entry papers, Finance and rival readings added; continuous-exposure study not done. |
-| Discussion, literature, minor fixes | Done in the paper. |
+| Substitutability vs. shock size | **Done.** Normalized CES (`ces_normalization="cost_saving"` in `model/parameters.py`); regime map (`scripts/regime_map.py`) and Monte Carlo (`scripts/monte_carlo_normalized.py`) re-run. The high-sigma "plateau" in the original runs was an artifact of the normalization. |
+| Dependence of the threshold on returns to scale | **Done in the text and the note.** Stated for a general scale elasticity; the note's boundary figure varies alpha. Not yet in the uncertainty analysis with recalibration. |
+| Presentation of Monte Carlo results | **Done.** Results shown as a regime map; shares of draws are not presented as probabilities. |
+| Equilibrium closure (wages, product demand, business stealing) | **Not done.** Stated as a limitation; next workstream. |
+| Calibration | **Partly.** Model-versus-data table added; simulated method of moments not done. |
+| Cloud-era evidence | **Partly.** Used as motivation only; a cloud-era estimation is not done. |
+| Business-application evidence | **Partly.** On the November 12, 2026 Census vintage, positioned against recent entry studies, with sensitivity to sector definitions; continuous-exposure study not done. |
 
 ---
 
@@ -70,16 +67,15 @@ In short:
 │   ├── note_regime_boundary.py      # analytic numbers and figure for the note
 │   ├── plot_note_regime.py          # simulated regime map for the note
 │   ├── bfs_causal_analysis.py       # Census business-application event study and permutations
-│   ├── plot_blog_bfs_gap.py         # blog/summary chart: AI-exposed sectors vs. Construction
-│   ├── plot_blog_applications.py    # applications vs. planned-wage applications, 2005-2025
-│   ├── plot_sigma_threshold.py, plot_offset_heatmap.py, europe_comparison.py, cloud_replication.py
+│   ├── plot_blog_bfs_gap.py         # summary chart: AI-exposed sectors vs. Construction
+│   ├── baseline_moments.py, threshold_table.py, normalization_cost_saving.py, bfs_revision_numbers.py
+│   └── europe_comparison.py, cloud_replication.py
 ├── data/
 │   ├── bfs_raw/bfs_monthly.csv           # Census BFS, November 12, 2026 release
 │   ├── bfs_raw/bfs_monthly_vintage-2026-10.csv  # earlier vintage used by the October draft
 │   ├── regime_map.md, monte_carlo_*_results.md, note_numbers.md, prior_sensitivity.md
-│   ├── claim_registry.md, claim_sources_2026-11.md   # verification of factual claims
-│   └── ...                               # literature, Europe, cloud-era and hyperscaler notes
-├── companion/math-companion.md  # formula walkthroughs
+│   ├── sources.md                        # bibliography for the cloud-era and AI-era data notes
+│   └── ...                               # cloud-era, Europe and S-1 data notes cited by the paper
 └── tests/                       # unit tests (normalization, threshold sign flip, model invariants)
 ```
 
@@ -113,7 +109,7 @@ distribution (or [Tectonic](https://tectonic-typesetting.github.io/)): run it on
 - **Census Business Trends and Outlook Survey** (AI supplement, via Bonney et al. 2026): AI use and AI-related
   employment changes
 - **Business Dynamics Statistics, OECD, Eurostat, Stanford HAI AI Index**: firm dynamics and European comparisons
-- **Company filings and press** for the descriptive company comparisons (see `data/claim_sources_2026-11.md`)
+- **Company filings and press** for the descriptive company comparisons (cited in the paper's bibliography)
 
 ---
 

@@ -1,6 +1,6 @@
 # Sources: Cloud-Era Baseline (2006–2020) and AI-Era Evidence (2017–2026)
 
-Bibliography for `data/cloud_era_baseline.md` (§1–§4) and `data/ai_adoption_evidence.md` (§5–§8). Compiled 2026-10-29.
+Bibliography for `data/cloud_era_baseline.md` (§1–§4) and for AI-era evidence (§5–§8). Compiled 2026-10-29.
 
 Status column:
 - **used** = numbers in the baseline were computed from this file.
@@ -15,7 +15,7 @@ Status column:
 
 #### Census Business Dynamics Statistics (BDS): used
 
-The task brief calls this "BLS BDS", but **BDS is a Census Bureau product** built from the Longitudinal Business Database. BLS publishes a different series, BED (§1.1.5).
+**BDS is a Census Bureau product** built from the Longitudinal Business Database. BLS publishes a different series, BED (§1.1.5).
 
 - **What it is:** the annual universe of US employer firms and establishments, 1978–2023 (current release). Gives firms, establishments, employment, entry/exit, job creation/destruction and reallocation, tabulated by firm age, firm size, sector, state and metro.
 - **Landing page:** [Census BDS](https://www.census.gov/programs-surveys/bds.html)

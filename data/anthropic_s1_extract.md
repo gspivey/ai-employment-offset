@@ -3,11 +3,11 @@
 - **Filer:** Anthropic, PBC — CIK 0002130357 — Accession 0001628280-26-067168
 - **Filing index:** https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/
 - **Main prospectus (source for every item below unless noted):** https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm (14.2 MB HTML)
-- **Extracted:** 2026-10-29 by PlayEcon
+- **Extracted:** 2026-10-29
 
-> **How the document was accessed.** The "224 MB" size is the full submission `.txt`, which bundles ~20 multi-MB JPG graphics. The prospectus HTML is only 14.2 MB, so I downloaded it whole and converted it to text. No byte-range requests or full-text search were needed. The XBRL package (`-xbrl.zip`, 3 KB; R1–R3) covers only the cover page and filing-fee data. It contains no financial statements.
+> **How the document was accessed.** The "224 MB" size is the full submission `.txt`, which bundles ~20 multi-MB JPG graphics. The prospectus HTML is only 14.2 MB, so it was downloaded whole and converted to text. No byte-range requests or full-text search were needed. The XBRL package (`-xbrl.zip`, 3 KB; R1–R3) covers only the cover page and filing-fee data. It contains no financial statements.
 >
-> **Page references** are the printed page numbers in the prospectus where I could see them in the text (e.g., "p. 23", "F-47"). Otherwise the reference is the section heading.
+> **Page references** are the printed page numbers in the prospectus where they are visible in the text (e.g., "p. 23", "F-47"). Otherwise the reference is the section heading.
 
 ---
 
@@ -58,7 +58,7 @@ Other headcount statements:
 - Q4 2024 revenue: $197M (Risk Factors, growth section).
 - "revenue that grew 1,368% year over year for the three months ended June 30, 2026 compared to compute and infrastructure expenses that grew 300%" (p. 11)
 - **Projections:** none given. Run-Rate Revenue is defined (trailing-28-day consumption × 13 + monthly subscriptions × 12, p. 5), but the value is blank.
-- **Derived Q3 2026 revenue estimate (my calculation, not in the filing): ≈ $16.9B.** It comes from "86 times" × $197M (Q4'24) ≈ $16.9B. A second check: TTM revenue/employee >$6.6M × 5,300 ≈ $35B TTM, minus Q4'25+Q1'26+Q2'26 ($18.3B), gives ≥ ~$16.7B. The two methods agree, but treat the figure as an estimate.
+- **Derived Q3 2026 revenue estimate (derived here, not in the filing): ≈ $16.9B.** It comes from "86 times" × $197M (Q4'24) ≈ $16.9B. A second check: TTM revenue/employee >$6.6M × 5,300 ≈ $35B TTM, minus Q4'25+Q1'26+Q2'26 ($18.3B), gives ≥ ~$16.7B. The two methods agree, but treat the figure as an estimate.
 
 Customer metrics (Sep 30, 2026, p. 9–10): >11,900 customers at ≥$100K TTM (up from >950 a year earlier), >1,900 at ≥$1M, ~250 at ≥$10M. Net Revenue Retention ~900%.
 
@@ -79,7 +79,7 @@ Customer metrics (Sep 30, 2026, p. 9–10): >11,900 customers at ≥$100K TTM (u
 (p. 23, 25)
 
 - Q2 2026 was the **first operating-profit quarter**: operating income $974M on $11.6B revenue (p. 158).
-- ⚠️ **Read the net loss with care.** Most of it is non-cash mark-to-market on convertible instruments (mainly the Amazon notes), driven by rising valuation: "These changes were primarily driven by an increase in the fair value of our outstanding convertible promissory notes resulting from an increase in our enterprise valuation" (p. 23, fn. 2). H1 2026 also includes "Other expense" of $(8,757)M, of which $(8,448)M fell in Q2'26. I did not pin down the cause.
+- ⚠️ **Read the net loss with care.** Most of it is non-cash mark-to-market on convertible instruments (mainly the Amazon notes), driven by rising valuation: "These changes were primarily driven by an increase in the fair value of our outstanding convertible promissory notes resulting from an increase in our enterprise valuation" (p. 23, fn. 2). H1 2026 also includes "Other expense" of $(8,757)M, of which $(8,448)M fell in Q2'26. The cause is not identified here.
 - Quarterly net loss: Q1'25 (6,592); Q2'25 (6,377); Q3'25 (12,138); Q4'25 (16,858); Q1'26 (14,439); Q2'26 (66,309).
 
 ---
@@ -99,9 +99,9 @@ Customer metrics (Sep 30, 2026, p. 9–10): >11,900 customers at ≥$100K TTM (u
 | Series G (G-1 + G-2) | Q1–Q2 2026 | $259.1364 | $30.2B (Q1) + $15.0B (Q2) = $45.2B |
 | Series H (H-1 + H-2) | May–Jun 2026 | $589.0095 | $65.2B (incl. Google $10.0B, Amazon $5.0B) |
 
-- **No post-money valuation is stated.** I searched for "post-money", "valued at", and "valuation of"; the filing gives none.
+- **No post-money valuation is stated.** A search for "post-money", "valued at", and "valuation of" finds none.
 - **IPO valuation target:** blank (no price range).
-- ⚠️ **Implied Series H valuation (my calculation, weak):** the preferred-to-common conversion ratio is 10:1 after the 10-for-1 forward split of Sept 17, 2026 (Notes, F-47ff; p. 22). That makes Series H ≈ $58.90 per common share. The filing says 846,840,960 shares equals 5% of fully diluted shares at Jun 30, 2026, so fully diluted ≈ 16.94B shares. Multiplying gives **≈ $1.0 trillion**. This mixes a May–June price with a June 30 share count and assumes the Amazon notes convert in full. Confirm it against the press-reported Series H post-money.
+- ⚠️ **Implied Series H valuation (derived here; weak):** the preferred-to-common conversion ratio is 10:1 after the 10-for-1 forward split of Sept 17, 2026 (Notes, F-47ff; p. 22). That makes Series H ≈ $58.90 per common share. The filing says 846,840,960 shares equals 5% of fully diluted shares at Jun 30, 2026, so fully diluted ≈ 16.94B shares. Multiplying gives **≈ $1.0 trillion**. This mixes a May–June price with a June 30 share count and assumes the Amazon notes convert in full. Confirm it against the press-reported Series H post-money.
 
 ---
 
@@ -171,6 +171,6 @@ The income statement classifies expenses **by nature**, not the usual R&D / S&M 
 
 **Needs verification or follow-up**
 - Q3 2026 revenue, Run-Rate Revenue, IPO price range, and total compute commitments are **blank**. Watch for an S-1/A on EDGAR.
-- The ~$1.0T implied Series H valuation is my derivation. It is not stated in the filing.
+- The ~$1.0T implied Series H valuation is derived here. It is not stated in the filing.
 - Cause of the $(8.4)B "Other expense" in Q2 2026 not yet identified (check MD&A "Other income (expense), net").
 - The "Personnel" line includes SBC, which jumped to $2.2B in H1 2026. Personnel excluding SBC ≈ $0.95B in H1 2026.

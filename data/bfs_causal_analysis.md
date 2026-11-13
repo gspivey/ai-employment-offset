@@ -1,6 +1,8 @@
 # BFS causal analysis: pre-trends, placebos and permutation inference
 
-Companion to `data/ai_era_startups_2023_2026.md` §3 and paper Section 6 (`paper/sections/06-empirical-signatures.tex`).
+> **Superseded numbers.** This note was written on the October 2026 Census vintage (`data/bfs_raw/bfs_monthly_vintage-2026-10.csv`). The CSV outputs and figures in `data/` and `paper/figures/` have been regenerated on the November 12, 2026 release; current figures quoted in the paper are in `data/bfs_revision_numbers.md`. Methods below are unchanged.
+
+Companion to paper Section 6 (`paper/sections/06-empirical-signatures.tex`).
 All numbers are **[C]**: computed by us from the official Census file. Reproducible with:
 
 ```
@@ -11,7 +13,7 @@ All numbers are **[C]**: computed by us from the official Census file. Reproduci
 - **Filters:** `geo=US`, `sa=A` (seasonally adjusted), 19 NAICS sectors. `TOTAL` and `NONAICS` are dropped.
 - **Outcomes:** `BA_BA` (all business applications) and `BA_HBA` (high-propensity applications, i.e. likely employers).
 - **Annual outcome:** log of the mean monthly SA count. 2026 = Jan–Sep. A Jan–Sep-only robustness check for every year gives the same results (Table 2).
-- **Treated:** Information (NAICS 51) and Professional, scientific & technical services (NAICS 54). These are the two high-exposure sectors where AI-native firms register (`ai_era_startups_2023_2026.md` §3.3).
+- **Treated:** Information (NAICS 51) and Professional, scientific & technical services (NAICS 54). These are the two high-exposure sectors where AI-native firms register.
 - **Placebo:** Construction (23) and Retail (44–45). These are low-exposure sectors (exposure 0.28 in Section 6).
 - **Controls:** the other 15 sectors (51, 54, 23 and Retail are excluded from controls in every design).
 - **Outputs:** `data/bfs_causal_results.csv`, `data/bfs_event_study.csv`, `data/bfs_perm_by_year_{BA_BA,BA_HBA}.csv`, `data/bfs_permutation_*.csv`, `data/bfs_sector_league_*.csv`, `data/bfs_monthly_gap.csv`. Figures are in `paper/figures/bfs_{event_study,monthly_gap,indices}.pdf`, with PNG copies in `data/`.
