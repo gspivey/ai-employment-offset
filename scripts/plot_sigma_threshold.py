@@ -90,9 +90,9 @@ def main() -> None:
 
     ax.axvspan(2.0, THETA, color="#d6e6f4", lw=0, zorder=0)
     ax.axvspan(THETA, 5.0, color="#f8e0cc", lw=0, zorder=0)
-    ax.text(0.5 * (2.0 + THETA), 0.06, "Augmentation\n" r"($\sigma_{\mathrm{ai}} < \theta$)",
+    ax.text(0.5 * (2.0 + THETA), 0.06, "Scale effect dominates\n" r"($\sigma_{\mathrm{ai}} < \theta$)",
             ha="center", va="bottom", fontsize=8.5, color="#1f4e79")
-    ax.text(0.5 * (THETA + 5.0), 0.06, "Displacement\n" r"($\sigma_{\mathrm{ai}} > \theta$)",
+    ax.text(0.5 * (THETA + 5.0), 0.06, "Substitution effect dominates\n" r"($\sigma_{\mathrm{ai}} > \theta$)",
             ha="center", va="bottom", fontsize=8.5, color="#8a3b00")
 
     ax.axhline(0.5, color="0.6", lw=0.5, ls=":", zorder=1)
@@ -118,7 +118,7 @@ def main() -> None:
     ax.set_xlim(2.0, 5.0)
     ax.set_ylim(0.0, 1.02)
     ax.set_xlabel(r"Labor–AI substitution elasticity $\sigma_{\mathrm{ai}}$")
-    ax.set_ylabel(r"Probability of offset, $\Pr[\Omega \geq 1]$")
+    ax.set_ylabel("Probability of offset (net employment > 0)")
     ax.yaxis.set_major_formatter(matplotlib.ticker.PercentFormatter(1.0, decimals=0))
     ax.legend(loc="upper right", bbox_to_anchor=(1.0, 0.56), fontsize=7, frameon=True,
               framealpha=0.9, edgecolor="none", borderpad=0.4)

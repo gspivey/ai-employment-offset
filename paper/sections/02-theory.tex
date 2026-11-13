@@ -1,8 +1,9 @@
 \section{Theoretical Framework}\label{sec:theory}
 
 % Role: baseline environment without AI; the shock is added in sec:ai-model.
-We embed a span-of-control technology \citep{lucas1978size} in an entry-and-exit model \citep{hopenhayn1992entry}, a structure chosen because it links entry and operating costs directly to the firm size distribution.
-The model is a workhorse in the business dynamism literature \citep{decker2014role,haltiwanger2013who}, and its extension with random growth yields a Pareto tail that matches the observed right skew of the firm size distribution \citep{luttmer2007selection,axtell2001zipf}.
+We embed a span-of-control technology \citep{lucas1978size} in an entry-and-exit model in the spirit of \citet{hopenhayn1992entry}, a structure chosen because it links entry and operating costs directly to the firm size distribution.
+The model is a workhorse in the business dynamism literature \citep{decker2014role,haltiwanger2013who}, and its extension with random growth yields a Pareto tail of the kind observed in the firm size distribution \citep{luttmer2007selection,axtell2001zipf}.
+We use it in partial equilibrium: the wage is fixed, product demand is not modeled, and the outcomes are changes in labor demand.
 
 \subsection{Environment}\label{sec:theory-env}
 
@@ -30,41 +31,49 @@ and the value of an incumbent satisfies
 \end{equation}
 where $\pi(z)$ is static profit before the fixed cost and $\beta$ is the discount factor.
 Firms exit when $V(z) < 0$, which defines an exit threshold $z^{*}$.
+Firms also exit exogenously with probability $\delta$ each period.
 
 \subsection{Entry}\label{sec:theory-entry}
 
 A potential entrant pays a sunk entry cost $c_e$ and then draws initial productivity from a distribution $G(z)$.
-With positive entry in equilibrium, free entry requires
-\begin{equation}\label{eq:free-entry}
-  \int V(z)\, dG(z) = c_e .
-\end{equation}
+In general equilibrium with positive entry, free entry would require $\int V(z)\, dG(z) = c_e$, and this condition together with labor-market clearing would pin down the wage.
+Because we hold the wage fixed, free entry cannot determine the mass of entrants.
+The simulation instead uses a finite pool of potential entrants whose size responds to the entry cost (\cref{sec:ai-entry}).
 
-\subsection{Stationary equilibrium and employment accounting}\label{sec:theory-equilibrium}
+\subsection{The fixed-wage stationary distribution and employment accounting}\label{sec:theory-equilibrium}
 
-A stationary equilibrium is a wage $w$, a mass of entrants $M_e$, an exit threshold $z^{*}$, and an invariant distribution of firms $\mu$ such that \cref{eq:labor-demand,eq:value,eq:free-entry} hold and the labor market clears.
-In the baseline we take labor supply to be perfectly elastic at the wage $w$, so that displacement shows up as lower employment rather than lower wages; \cref{sec:disc-limitations} discusses how a finite labor-supply elasticity would change the results.
+Given the wage $w$, the entry rule, and the exit threshold, the model has an invariant distribution of firms $\mu$, which we compute numerically.
+We do not close the labor market: labor supply is perfectly elastic at $w$, so any change in labor demand shows up one for one as a change in employment, and no wage or output-price adjustment dampens it.
+This is a statement about the model, not about the economy.
+Every employment outcome in this paper is therefore a change in labor demand at a constant wage.
+\Cref{sec:disc-limitations} lists the closure the model lacks.
 
-We partition firms by employment into three size classes: large incumbents $\Lc$ (5,000 employees or more), the band of small and mid-sized firms $\Bc$ (5 to 4,999 employees), and very small firms $\Sc$ (fewer than 5).
-Aggregate employment is then
+We partition firms by employment into three size classes, the same ones the simulation uses: large firms $\Lc$ (500 employees or more), mid-sized firms $\Bc$ (20 to 499 employees), and small firms $\Sc$ (fewer than 20).
+Aggregate labor demand is then
 \begin{equation}\label{eq:employment}
   N = N^{\Lc} + N^{\Bc} + N^{\Sc}, \qquad N^{k} = \int_{z:\, n(z) \in k} n(z)\, d\mu(z), \quad k \in \{\Lc, \Bc, \Sc\}.
 \end{equation}
-% [rigor] The 5,000 cutoff matches BDS firm-size classes; European data are typically top-coded at 250+. See sec:cloud-data.
+The 500-employee cutoff matches a standard BDS firm-size class; it is lower than the cutoffs used to define very large firms in the data because the simulated economy has about 180,000 workers and, across five seeds, between zero and three firms with 5,000 or more employees (\cref{sec:sim-parameters}).
+European aggregate statistics typically group all firms with 250 or more employees, so European comparisons use that cutoff where necessary.
 \Cref{eq:employment} is an accounting identity; the model's content is in how a shock moves firms across the size classes and changes the mass of firms in each one.
 
 \subsection{The displacement threshold}\label{sec:theory-threshold}
 
-The model has a key threshold that governs whether technological change raises or lowers employment.
-We show in \cref{sec:ai-ces} that when AI is modeled as a substitute for labor within a CES production bundle with elasticity of substitution $\sigma_{\text{ai}}$, AI adoption \emph{increases} a firm's headcount if and only if
+Whether technological change raises or lowers a firm's labor demand turns on a threshold.
+We show in \cref{sec:ai-ces} that when AI is a substitute for labor within a CES bundle with elasticity of substitution $\sigma_{\text{ai}}$, AI adoption \emph{increases} a firm's headcount if and only if $\sigma_{\text{ai}}$ is below the firm's scale elasticity $\eta$, the elasticity of its demand for the input bundle with respect to the bundle's unit cost.
+This is the Hicks--Marshall condition for a fall in the price of a substitute input to raise the demand for labor \citep{hamermesh1993labor}.
+In the span-of-control model of \cref{eq:production}, $\eta = 1/(1-\alpha) \equiv \theta$, so
 \begin{equation}\label{eq:threshold}
-  \sigma_{\text{ai}} < \frac{1}{1-\alpha} \equiv \theta.
+  \sigma_{\text{ai}} < \theta = \frac{1}{1-\alpha}.
 \end{equation}
-With $\alpha = 0.64$ (a standard calibration from \citealp{hopenhayn1993job}), the threshold is $\theta \approx 2.78$.
+At $\alpha = 0.64$ \citep[the value in][]{hopenhayn1993job}, $\theta \approx 2.78$.
 Below this threshold, the scale effect dominates: cheaper effective input lets the firm produce more, and the extra output requires more labor.
-Above the threshold, the substitution effect dominates: the firm replaces workers with AI services faster than it grows.
+Above it, the substitution effect dominates: the firm replaces workers with AI services faster than it grows.
+The threshold is sensitive to $\alpha$, which we discuss in \cref{sec:ai-ces}.
 
-This parameter---the labor-AI substitution elasticity---will prove to be the central uncertain quantity.
-% [claim] Verify that Graetz and Michaels (2018) report elasticities in this range; their headline results are productivity and employment effects, not substitution elasticities.
-Existing estimates of automation elasticities range from 0.3 to 1.7 for robots \citep{graetz2018robots}, though these pertain to physical automation rather than AI.
-More recent surveys suggest AI adoption has not yet triggered employment reductions at adopting firms: the Census Bureau's Business Trends and Outlook Survey (October 2026) reports that only 2\% of AI-adopting establishments reduced employment due to AI, while 4.7\% increased headcount \citep{btos2026oct}.
-We therefore treat $\sigma_{\text{ai}}$ as uncertain and explore its effects through Monte Carlo simulation (\cref{sec:simulation}).
+The labor--AI substitution elasticity is the central uncertain quantity.
+The closest available estimate, from \citet{luduvice2026ai}, is an elasticity of about 0.89 between AI capital, proxied by computer investment, and a composite of high-skill labor and equipment; that is a different aggregate from our firm-level labor--AI bundle, and it points to complementarity rather than substitution.
+Our parameter space requires $\sigma_{\text{ai}} > 1$ (gross substitutes) throughout, so complementarity is excluded by construction, and all results below should be read as conditional on AI being a gross substitute for labor at adopting firms.
+Evidence from earlier automation does not identify the elasticity either: robot adoption raised productivity without clear aggregate employment losses \citep{graetz2018robots}, and adopting firms often expanded, which is consistent with a scale effect at adopters but also with business stolen from competitors \citep{acemoglu2020competing,koch2021robots}.
+Survey evidence suggests AI has so far changed headcount at few adopting firms: in the Census Bureau's Business Trends and Outlook Survey AI supplement (November 2025--January 2026), 2.0\% of AI-using firms reported reducing employment because of AI and 2.3\% reported increasing it (2.4\% and 3.7\% employment-weighted) \citep{bonney2026}.
+We therefore treat $\sigma_{\text{ai}}$ as unknown and report results as functions of it (\cref{sec:simulation}).

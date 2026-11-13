@@ -1,0 +1,46 @@
+\section{Company Evidence on Employment Intensity}\label{app:company}
+
+% Moved from the discussion.Commentary, not evidence on sigma_ai.
+
+\Cref{tab:ai-vs-cloud} compares valuation, revenue, and headcount at AI infrastructure firms, AI application firms, and cloud-era software firms.
+It is illustrative.
+Revenue is not value added: application firms pay model providers for access, so their revenue per employee overstates the value they add per employee, and run-rate figures at fast-growing firms are not comparable with a full year of reported revenue.
+The systematic evidence that AI-native firms are smaller is \citet{kim2026ainative}.
+
+\begin{table}[h]
+  \centering
+  \caption{Valuation and revenue per employee: AI versus cloud-era firms}
+  \label{tab:ai-vs-cloud}
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{llrrrr}
+    \toprule
+    Company & Layer / Era & Valuation & Revenue & Employees & Rev./Emp. \\
+    \midrule
+    \multicolumn{6}{l}{\textit{AI infrastructure (labs, neoclouds)}} \\
+    Anthropic (S-1, Oct 2026) & Lab & $\sim$\$1T & $\approx$\$35B TTM (derived) & 5,300 & $>$\$6.6M \\
+    CoreWeave (2025) & Neocloud & \$27B & \$5.1B & 2,189 & \$2.3M \\
+    \midrule
+    \multicolumn{6}{l}{\textit{AI applications (API consumers)}} \\
+    Cursor (2026) & Application & \$60B & \$3B ARR & $\sim$800 & \$3.75M \\
+    Lovable (Feb 2026) & Application & \$13.3B & \$400M ARR & 146 & \$2.7M \\
+    Vercel (2025--26) & Application & \$9.3B & \$340M ARR & 550 & \$0.6M \\
+    \midrule
+    \multicolumn{6}{l}{\textit{Cloud-era SaaS (baseline)}} \\
+    Databricks (2021) & Cloud SaaS & \$38B & \$0.8B ARR & n/a & n/a \\
+    Snowflake (FY2021) & Cloud SaaS & \$33.3B & \$0.59B & 2,495 & \$0.24M \\
+    \bottomrule
+  \end{tabular}
+  \par\smallskip
+  \parbox{\linewidth}{\footnotesize \textit{Sources:} Anthropic S-1 \citep{anthropic2026s1}: the filing states headcount (about 5,300 at September 30, 2026) and TTM revenue per employee (over \$6.6 million); the TTM revenue figure is derived by multiplying the two and is not stated in the filing (\texttt{data/anthropic\_s1\_extract.md}). CoreWeave 10-K \citep{coreweave2026tenk}. Cursor: SpaceX acquisition value \citep{spacex2026cursorclose}, ARR in late April 2026 \citep{metz2026cursor}, headcount May 2026 \citep{bi2026cursorhiring}. Lovable: ARR and headcount February 2026 \citep{heim2026lovable}, valuation August 2026 \citep{bort2026lovable}. Vercel: valuation September 2025 \citep{vercel2025seriesf}, run-rate February 2026 \citep{temkin2026vercel}, headcount January 2025 \citep{garfinkle2025vercel}; the dates do not match, so its ratio is indicative only. Databricks: post-money valuation August 2021 \citep{databricks2021seriesh}, ARR at end-2021 \citep{wilhelm2022databricks}; we found no primary 2021 headcount. Snowflake: valuation at the IPO price \citep{levy2020snowflake}, revenue and headcount for the year to January 2021 \citep{snowflake2021tenk}. ARR figures are run rates, not reported annual revenue. The CoreWeave valuation is a press estimate.}
+\end{table}
+
+\paragraph{Infrastructure layer.}
+Anthropic's S-1 reports compute and infrastructure costs equal to 48\% of revenue in the second quarter of 2026 \citep{anthropic2026s1}, and CoreWeave carried about \$35.1 billion of debt at June 2026, with Microsoft accounting for 67\% of its 2025 revenue \citep{coreweave2026tenk,coreweave2026tenq}.
+Much of the employment this spending supports is at chip makers, hyperscalers, and data-center builders, which are old, large firms.
+Microsoft offered voluntary exits to about 60,000 employees in October 2026, an eligibility figure rather than an exit count, while guiding calendar-2026 capital expenditure to about \$175 billion \citep{techcrunch2026msftbuyout,msft2026fy26q4}; these aggregates are consistent with trading headcount for capital but cannot establish it.
+Anthropic's own headcount rose from about 940 (December 2024) to about 5,300 (September 2026) as it reported that most of its code was written by its models \citep{anthropic2026s1}; a single fast-growing firm cannot identify $\sigma_{\text{ai}}$.
+
+\paragraph{Exits.}
+Several fast-growing AI firms have been absorbed by large incumbents before reaching scale as independent employers: SpaceX completed its acquisition of Cursor in August 2026 \citep{spacex2026cursoragreement,spacex2026cursorclose}, Inflection's co-founders and team joined Microsoft in 2024 \citep{microsoft2024inflection}, and Google licensed Character.ai's technology and hired its co-founders \citep{mehta2024characterai}.
+In BDS terms, the acquired employment becomes employment at old, large firms, which bears on how the offset ratio would be measured by firm size and age.

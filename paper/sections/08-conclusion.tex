@@ -2,28 +2,26 @@
 
 % Role: restate the question, the answer, and what to watch for as AI diffuses.
 
-This paper asks whether AI-induced firm formation can offset the employment that large incumbents shed as they adopt AI.
-We model the AI shock as a combination of displacement at incumbents and lower fixed costs of entry and operation, discipline the second channel using the cloud-computing era, and quantify the conditions for offset through calibration and Monte Carlo simulation.
+This paper asks under what conditions AI-induced firm formation can offset the labor that large incumbents shed as they adopt AI.
+We model the AI shock as labor-substituting technology at adopters, lower entry costs, and possibly more productive entrants, in a partial-equilibrium firm-dynamics model with a fixed wage.
+Every result is a change in labor demand, not in equilibrium employment, and the model is not calibrated.
 
 \paragraph{Main findings.}
-Across 2,000 Monte Carlo draws spanning plausible parameter ranges, the probability that AI raises net employment is 81.7\%.
-The result is conditional: offset depends on the labor-AI substitution elasticity $\sigma_{\text{ai}}$, which explains 71\% of the variance in employment outcomes, and much of it reflects the absence of displacement rather than compensation for it.
-Entry-cost reduction---the mechanism most analogous to cloud computing---explains only 3\%.
+At a single firm, whether AI raises or lowers headcount is the Hicks--Marshall comparison of the labor--AI substitution elasticity with the scale elasticity.
+In the span-of-control model the threshold is $1/(1-\alpha)$, which is about 2.78 at $\alpha = 0.64$ but rises steeply with $\alpha$, so the regime an economy is in depends on returns to scale as much as on the elasticity.
+Once the size of the AI cost shock is held fixed as the elasticity varies, the net labor-demand effect declines monotonically in the elasticity.
+Offset fails when substitution is high and AI-native entrants are no more productive than earlier entrants; it can survive high substitution only if entrants are substantially more productive.
+Cutting entry costs moves aggregate labor demand little in any specification.
+The high-substitution plateau reported in earlier drafts was an artifact of holding the AI price fixed.
 
-Below the displacement threshold ($\sigma_{\text{ai}} < 2.78$), AI is labor-complementary and offset is nearly universal (99.8\%).
-Above the threshold, the offset probability falls to 74.9\% and depends heavily on whether AI-native entrants are more productive than their counterfactual selves.
-When $\sigma_{\text{ai}} > 3.5$ and the entrant productivity advantage is weak, the offset probability collapses to 27.8\%.
-
-Early empirical evidence is cautiously optimistic: the Census Bureau's BTOS (October 2026) shows that only 2\% of AI-adopting establishments reduced employment due to AI \citep{btos2026oct}, suggesting $\sigma_{\text{ai}}$ is currently below the threshold.
-However, leading AI application firms are markedly employment-light---Cursor generates more than twenty times the revenue per employee of cloud-era SaaS firms---and business applications with planned wages are falling even as total applications reach record highs.
+In Census business applications, Information and Professional services pulled away from other sectors from March 2025, with no earlier pre-trend, mostly among applicants unlikely to hire, while applications with planned wages fell in every sector.
+That pattern fits more but smaller entrants, and it also fits displaced workers registering as contractors.
+It depends on the choice of exposed sectors (adding Finance roughly halves it) and on one small comparison sector, and we give it no causal reading.
 
 \paragraph{What to watch.}
-The single most informative empirical signature is employment change at AI-adopting establishments, which directly reveals whether $\sigma_{\text{ai}}$ is above or below the displacement threshold.
-Establishment-level data from the Business Trends and Outlook Survey (United States) and the Community Survey on ICT Usage (Europe) can track this as AI diffuses.
-A shift from the current 2\% reporting employment reductions toward higher rates would signal that the labor-complementary regime is ending.
+The regime map identifies two quantities: labor demand at AI-adopting firms relative to comparable non-adopters, which bears on whether adopters are above or below the threshold, and the productivity and employment of AI-native entrants.
+Establishment-level surveys such as the Business Trends and Outlook Survey and the Community Survey on ICT Usage, linked to administrative data on firm entry and growth, can track both as AI diffuses.
 
-\paragraph{Broader implications.}
-The standard approach to measuring AI's labor-market effects focuses on task exposure within a fixed set of firms.
-Our analysis suggests this approach understates uncertainty: the net effect of AI on employment depends as much on firm creation as on within-firm automation.
-Monitoring and forecasting should therefore track business formation, entrant productivity, and entrant employment alongside task automation rates.
-The cloud era---which saw concentration rise despite cheaper computing---is a cautionary precedent: even favorable $\sigma_{\text{ai}}$ does not prevent concentration if structural headwinds suppress entry, and if $\sigma_{\text{ai}}$ turns out to be above the threshold, the same headwinds would turn offset into net job loss.
+\paragraph{What is not done.}
+The model does not yet close the labor and product markets, is not calibrated, classifies firms by current rather than pre-shock size, and runs its Monte Carlo with one seed per draw; the cloud-era exposure design and the continuous-exposure business-formation analysis have not been estimated (\cref{sec:disc-limitations}).
+Until they are, the paper's contribution is a framework and a conditional map of where offset holds and fails, not an estimate of whether it will.
